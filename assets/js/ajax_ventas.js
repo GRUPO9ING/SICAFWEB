@@ -66,31 +66,12 @@ function cambio(){
 
 function Limpiar(){
   $("#limpia").on("click",function(){
-             $("#cbolote").val(0);
-             $("#cbocliente").val(0);
+             $('.selectpicker').selectpicker('val', '');
              $("#txtMonto").val('');
              $("#txtObser").val('');
 
 
    });
-}
-
-
-function cboCliente(){
-  $("#cbocliente").prop('selectedIndex', -1);
-  $.ajax({
-    type:'POST',
-    url:'?c=Ventas&a=cboCliente',
-    success:function(result){
-      var a = JSON.parse(result);
-      var i = 0;
-      while(Object.keys(a.data).length > i){
-        $("#cbocliente").append('<option value="'+a.data[i].IdCliente+'">'+a.data[i].Cedula+' -- '+a.data[i].Cliente+'</option>');
-        i++;
-      }
-    }
-  })
-
 }
 
 function guardar(){
@@ -126,7 +107,6 @@ function guardar(){
                                 data: {
                                     'id': rr
                                   },success:function(result){
-                                    cboCliente();
                                   }
                                 });
                                 $('#mcliente').modal('hide');
@@ -169,6 +149,12 @@ function guardar(){
 }
 
 
+function limpia(){
+$('.selectpicker').selectpicker('val', '');
+$('#txtMonto').val('');
+$('#txtObser').val('');
+}
+
 
 function vender(){
   $('#btnGuardarVentas').on("click",function(){
@@ -193,7 +179,7 @@ function vender(){
       },
       success:function(result){
         if(result != null){
-          cboCliente();
+          limpia();
           swal({
               type: 'success',
               title: 'Operación ejecutada exitosamente',

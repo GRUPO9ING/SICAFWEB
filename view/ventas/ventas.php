@@ -24,8 +24,8 @@
          <div class="col col-md-3 col-sm-3 col-lg-3">
 
            <select id="cbolote" class="selectpicker" data-live-search="true" title="Seleccione uno">
+             <option value=0 class="hidden">opcion 0</option>
              <?php foreach($this->modelL->LlenarLotes() as $r): ?>
-                      <option value="0" class="hidden">opcion 0</option>
                      <option value="<?php echo $r->IdLote; ?>"> <?php echo $r->Nombre;?> </option>
              <?php endforeach; ?>
            </select>
@@ -41,6 +41,11 @@
          <div class="col col-md-3 col-sm-3 col-lg-3">
 
            <select id="cbocliente" class="selectpicker ffdd" data-live-search="true" title="Seleccione uno">
+             <option value=0 class="hidden">opcion 0</option>
+             <?php foreach($this->modelC->cboCliente() as $r): ?>
+                     <option value="<?php echo $r->IdCliente; ?>"><?php echo $r->Cedula;?>  -- <?php echo $r->Cliente;?> </option>
+             <?php endforeach; ?>
+
            </select>
           </div>
           <div class="col col-md-3 col-sm-3 col-lg-3">
