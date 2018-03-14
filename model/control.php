@@ -23,15 +23,14 @@ class Control
 	}
 
 
- public function Listar()
+ public function lisCompras($fi,$ff)
  {
-
+	 $FI = date('Y-m-d', strtotime($fi));
+	 $FF = date('Y-m-d', strtotime($ff));
 	 try
 	 {
-		 $result = array();
-
-		 $stm = $this->pdo->prepare("CALL LFA80();");
-		 $stm->execute();
+		 $stm = $this->pdo->prepare("CALL todasVentas(?,?);");
+		 $stm->execute(array($FI,$FF));
 		 return $stm->fetchAll(PDO::FETCH_OBJ);
 	 }
 	 catch(Exception $e)
@@ -42,13 +41,19 @@ class Control
  }
 
  public function vender($idc,$idl,$fecha,$ob,$mon){
+	 try {
 
 
-	 $F = date('Y-m-d', strtotime($fecha));
+		 $F = date('Y-m-d', strtotime($fecha));
+		 $stm = $this->pdo->prepare("CALL Vender(?,?,?,?,?);");
+		 return $stm->execute(array($idc,$F,$idl,$mon,$ob));
 
-	 $stm = $this->pdo->prepare("CALL Vender(?,?,?,?,?);");
-	 $stm->execute(array($idc,$F,$idl,$mon,$ob));
+	 } catch (Exception $e) {
+	 	die($e->getMessage());
+	 }
  }
+
+
 
 
 	public function Carga()

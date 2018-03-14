@@ -98,14 +98,14 @@
             <label class="col col-md-2">Fecha inicio</label>
             <div class="col col-md-3">
               <div class="input-group date fj-date">
-              <input type="text"  class="col col-md-12 fecha" placeholder="Fecha del trabajo" name="Fechatc" id="FI" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              <input type="text"  class="col col-md-12 fecha" placeholder="Fecha inicio" name="Fechatc" id="FI" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
               </div>
             </div>
 
             <label class="col col-md-2 col-md-offset-1 ">Fecha fin</label>
             <div class="col col-md-3">
               <div class="input-group date fj-date">
-              <input type="text"  class="col col-md-12 fecha" placeholder="Fecha del trabajo" name="Fechatc" id="FF" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              <input type="text"  class="col col-md-12 fecha" placeholder="Fecha Fin" name="Fechatc" id="FF" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
               </div>
             </div>
 
@@ -119,15 +119,18 @@
       <br>
 
     <div class="table-responsive">
-        <table id="tabla" class="table table-bordered table-hover" cellspacing="0" width="100%">
+        <table id="tablaVentas" class="table table-bordered table-hover" cellspacing="0" width="100%">
     <thead>
             <tr>
-                <th></th>
                 <th>Nº Factura</th>
-                <th>Vendedor</th>
-                <th>Monto</th>
                 <th>Cliente</th>
                 <th>Fecha</th>
+                <th>Monto</th>
+                <th>Lote</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>

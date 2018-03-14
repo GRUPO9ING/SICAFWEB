@@ -6,7 +6,8 @@ $(document).on("ready", function(){
   vender();
   Limpiar();
   guardar();
-  cboCliente();
+  consl();
+  listar();
   $("#Cedula").keyup(function(){
         if( $('#Cedula').val().length > 6){
           console.log("dasdas");
@@ -192,4 +193,97 @@ function vender(){
     });
 
   });
+}
+
+
+function consl(){
+  $("#btnConsultar").on("click",function(){
+    listar();
+  });
+}
+
+
+
+
+
+function listar(){
+
+  var f1 = $("#FI").val();
+  var f2 = $("#FF").val();
+  var dt = new Date();
+
+  if(f1 == ""){
+    var month = dt.getMonth()+1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    f1 = year + '-' + month + '-' + day;
+  }
+
+  if(f2 == ""){
+    var month = dt.getMonth()+1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    f2 = year + '-' + month + '-' + day;
+  }
+
+
+  var table = $("#tablaVentas").DataTable({
+        "order": [[0, "desc" ]],
+        "scrollY":"200px",
+        "bPaginate": false,
+        "destroy": true,
+        "bDeferRender": true,
+        "sPaginationType": "full_numbers",
+        "ajax": {
+          "url": "?c=Ventas&a=ListarCompras",
+          "type": "POST",
+          "data":{
+            'FI':f1,
+            'FF':f2
+          }
+        },
+        "columns": [
+          { "data": "IdFac"},
+          { "data": "Cliente" },
+          { "data": "FechaCompra" },
+          { "data": "Monto"},
+          { "data": "Lote"},
+          { "data": "IdCliente","class":"hidden"},
+          { "data": "Observacion","class":"hidden"},
+          { "data": "IdCliente","class":"hidden"},
+          { "data": "IdLote","class":"hidden"},
+          {"data":null,"defaultContent": "<button class='btn btn-info btnSeleccionar'><span class='fa fa-check'></span>Seleccionar</button>"}
+          ],
+
+ "language": idioma_espanol
+  });
+
+
+}
+
+
+    var idioma_espanol = {
+
+      "sProcessing":     "Procesando...",
+      "sLengthMenu":     "Mostrar _MENU_ registros",
+      "sZeroRecords":    "No se encontraron resultados",
+      "sEmptyTable":     "Ningún dato disponible en esta tabla",
+      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix":    "",
+      "sSearch":         "Buscar:",
+      "sUrl":            "",
+      "sInfoThousands":  ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+          "sFirst":    "Primero",
+          "sLast":     "Último",
+          "sNext":     "Siguiente",
+          "sPrevious": "Anterior"
+      },
+      "oAria": {
+          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
 }

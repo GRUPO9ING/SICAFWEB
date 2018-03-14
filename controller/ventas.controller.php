@@ -33,6 +33,12 @@ class VentasController
       exit();
     }
 
+    public function ListarCompras(){
+      $resultSet["data"] = $this->modelV->lisCompras($_POST['FI'],$_POST['FF']);
+      echo json_encode($resultSet);
+      exit();
+    }
+
 
 }
 ?>
