@@ -1,3 +1,18 @@
+.Nega{
+  color:#ef3232;  transition: 0.3s;
+    display: inline-block;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.Posi{
+  color: green;
+  transition: 0.3s;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
 .Lotes{
   color:#000000;
   transition: 0.3s;

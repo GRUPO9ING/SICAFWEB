@@ -13,6 +13,7 @@ require_once "controller/login.controller.php";
 require_once "controller/usuarioRoles.controller.php";
 require_once "controller/tc.controller.php";
 require_once "controller/ventas.controller.php";
+require_once "controller/control.controller.php";
 
 
 if(isset($_REQUEST['c']))

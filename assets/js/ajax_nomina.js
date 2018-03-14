@@ -5,6 +5,7 @@ $(document).on("ready", function(){
 
   /*-------------------------------*/
   fecha();
+  reporte();
   cancelar();
   aprobar();
   consl();
@@ -72,6 +73,75 @@ function __(id) {
 }
 
 
+function reporte(){
+  $("#btnConsultarB").on("click",function(){
+    $('#Lotes').empty();
+    $('#Balance').empty();
+    $('#Gastos').empty();
+    $('#Ventas').empty();
+
+
+    var idLote = $('#IdLL').val();
+
+    if(idLote == ''){
+      swal({
+          type: 'error',
+          title: 'Debe elegir un lote',
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }else {
+      $.ajax({
+          type:'POST',
+          url:'?c=Control&a=balance',
+          data:{
+            'fi':$('#FIR').val(),
+            'ff':$('#FFR').val(),
+            'op':idLote
+          },success:function(result){
+            var res = JSON.parse(result);
+            var balance  = 0;
+            var ventas  = 0;
+            var gasto = 0;
+            var i = 0;
+
+            console.log(Object.keys(res.data).length);
+            $('#Lotes').append('<h2 class="Titulos"> Lotes </h2>');
+            $('#Ventas').append('<h2 class="Titulos"> Ingresos </h2>');
+            $('#Gastos').append('<h2 class="Titulos"> Gastos </h2>');
+            $('#Balance').append('<h2 class="Titulos"> Balance </h2>');
+            while (Object.keys(res.data).length > i) {
+              ventas = res.data[i].Ventas;
+              gasto = res.data[i].Gasto;
+
+              if(ventas == null){
+                ventas = 0;
+              }
+
+              if(gasto == null){
+                gasto = 0;
+              }
+              $('#Lotes').append('<h5 class="Lotes">'+res.data[i].Nombre+' : '+' </h5> <br>');
+              $('#Ventas').append('<h5 class="Montos">₡ '+ventas+' </h5> <br>');
+              $('#Gastos').append('<h5 class="Montos">₡ '+gasto+' </h5> <br>');
+              balance = parseFloat(ventas) - parseFloat(gasto);
+               if(balance < 0){
+                 balance = balance *-1;
+                 $('#Balance').append('<h5 class="Nega"> - ₡ '+balance+' </h5> <br>');
+               }
+               else {
+                 $('#Balance').append('<h5 class="Posi"> ₡ '+balance+' </h5> <br>');
+               }
+               balance =0;
+              i++;
+            }
+          }
+      });
+    }
+
+  });
+
+}
 
 function aprobar(){
       $("#tablaPlanilla").on("click",".btnAprobarPlanilla", function(){

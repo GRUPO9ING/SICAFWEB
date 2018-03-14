@@ -64,6 +64,12 @@
                                         <i class="fa fa-wrench fa-lg"></i> Trabajo de campo
                                     </a>
                                   </li>
+
+                                  <li>
+                                    <a href="?c=Control&a=IndexB">
+                                        <i class="fa fa-balance-scale fa-lg"></i> Balance
+                                    </a>
+                                  </li>
                                 </ul>
 
 

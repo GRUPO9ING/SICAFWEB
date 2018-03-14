@@ -89,6 +89,22 @@ class Control
 	}
 
 
+	public function Balance($fi,$ff,$op){
+ 	 try {
+ 		 $FF = date('Y-m-d', strtotime($ff));
+ 		 $FI = date('Y-m-d', strtotime($fi));
+
+     $stm = $this->pdo->prepare("CALL Balances(?,?)");
+ 		 $stm->execute(array($FI,$FF));
+		 $stm = $this->pdo->prepare("CALL BBB(?)");
+ 		 $stm->execute(array($op));
+ 		 return $stm->fetchAll(PDO::FETCH_OBJ);
+
+ 	 } catch (Exception $e) {
+ 	 	die($e->getMessage());
+ 	 }
+
+  }
 
 
 }
