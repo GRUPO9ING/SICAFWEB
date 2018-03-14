@@ -3,6 +3,7 @@ $(document).on("ready", function(){
   $("#rep").hide();
   $("#vt").hide();
   cambio();
+  vender();
   Limpiar();
   guardar();
   cboCliente();
@@ -165,4 +166,44 @@ function guardar(){
 
   });
 
+}
+
+
+
+function vender(){
+  $('#btnGuardarVentas').on("click",function(){
+    var idLote = $('#cbolote').val();
+    var idCliente = $('#cbocliente').val();
+    var dt = new Date();
+    var month = dt.getMonth()+1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    f1 = year + '-' + month + '-' + day;
+    console.log(f1, idLote, idCliente);
+
+    $.ajax({
+      type:'POST',
+      url:'?c=Ventas&a=vender',
+      data:{
+        'idl':idLote,
+        'idc':idCliente,
+        'mon':$('#txtMonto').val(),
+        'fecha':f1,
+        'ob':$('#txtObser').val()
+      },
+      success:function(result){
+        if(result != null){
+          cboCliente();
+          swal({
+              type: 'success',
+              title: 'Operación ejecutada exitosamente',
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+        }
+      }
+    });
+
+  });
 }

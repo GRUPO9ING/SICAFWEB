@@ -41,82 +41,15 @@ class Control
 
  }
 
+ public function vender($idc,$idl,$fecha,$ob,$mon){
 
 
+	 $F = date('Y-m-d', strtotime($fecha));
 
-	public function Eliminar($IdNomina)
-	{
+	 $stm = $this->pdo->prepare("CALL Vender(?,?,?,?,?);");
+	 $stm->execute(array($idc,$F,$idl,$mon,$ob));
+ }
 
-		try
-		{
-			$stm = $this->pdo
-			            ->prepare("DELETE FROM uspr01 WHERE IdPersona = ?");
-
-			$stm->execute(array($IdNomina));
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
-
-
-	public function Actualizar($data)
-	{
-		try
-		{
-			$sql = "UPDATE uspr01 SET
-			      Cedula       =?,
-						Nombre       = ?,
-						Apellido1    = ?,
-						Apellido2    = ?,
-            Telefono     = ?,
-						Direccion    = ?,
-						Correo       = ?
-				    WHERE IdPersona  = ?";
-
-			$this->pdo->prepare($sql)
-			     ->execute(
-				    array(
-				    	          $data->IdNomina,
-                        $data->Colaborador,
-                        $data->SalarioBase,
-                        $data->SalarioBruto,
-                        $data->fInicio,
-                        $data->fFin,
-                        $data->Horas
-					)
-				);
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
-	public function Registrar(Nomina $data)
-	{
-		try
-		{
-		$sql = "INSERT INTO uspr01 (Cedula,Nombre,Apellido1,Apellido2,Telefono,Direccion,Correo)
-		        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-		$this->pdo->prepare($sql)
-		     ->execute(
-				array(
-                    $data->IdNomina,
-                    $data->Colaborador,
-                    $data->SalarioBase,
-                    $data->SalarioBruto,
-                    $data->fInicio,
-                    $data->fFin,
-                    $data->Horas
-                )
-			);
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
 
 	public function Carga()
 	{
@@ -133,6 +66,8 @@ class Control
 		die($e->getMessage());
 	}
 	}
+
+
 
 
 }

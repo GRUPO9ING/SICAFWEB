@@ -25,6 +25,7 @@
 
            <select id="cbolote" class="selectpicker" data-live-search="true" title="Seleccione uno">
              <?php foreach($this->modelL->LlenarLotes() as $r): ?>
+                      <option value="0" class="hidden">opcion 0</option>
                      <option value="<?php echo $r->IdLote; ?>"> <?php echo $r->Nombre;?> </option>
              <?php endforeach; ?>
            </select>
@@ -75,7 +76,7 @@
     <div class="row">
       <div class="col col-md-12 col-sm-12 col-lg-12">
         <div class="col col-md-4 col-sm-4 col-lg-4">
-           <a class="btn btn-success"> <span class="fa fa-save"></span> Guardar </a>
+           <a class="btn btn-success" id="btnGuardarVentas"> <span class="fa fa-save"></span> Guardar </a>
            <a class="btn btn-danger" id="limpia"> <span class="fa fa-eraser"></span> Limpiar </a>
         </div>
       </div>

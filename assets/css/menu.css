@@ -1,3 +1,8 @@
+
+.error{
+  border: 2px solid red;
+}
+
 .a {
   overflow:auto;
   resize:none;
@@ -8,7 +13,7 @@
   text-align: center
 }
 .r{
-  background-color: red !important; 
+  background-color: red !important;
 }
 
 .soa:hover .soaa
