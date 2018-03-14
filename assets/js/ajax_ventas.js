@@ -3,6 +3,7 @@ $(document).on("ready", function(){
   $("#rep").hide();
   $("#vt").hide();
   cambio();
+  reporte();
   vender();
   Limpiar();
   guardar();
@@ -199,6 +200,51 @@ function vender(){
 function consl(){
   $("#btnConsultar").on("click",function(){
     listar();
+  });
+}
+
+function reporte(){
+  $("#btnConsultarR").on("click",function(){
+    //$('.Montos').remove();
+    //$('.Lotes').remove();
+    $( "#Todos" ).empty();
+    $( "#Montos" ).empty();
+
+    var idLote = $('#IdLL').val();
+
+    if(idLote == ''){
+      swal({
+          type: 'error',
+          title: 'Debe elegir un lote',
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }else {
+      $.ajax({
+          type:'POST',
+          url:'?c=Ventas&a=generarReporte',
+          data:{
+            'FI':$('#FIR').val(),
+            'FF':$('#FFR').val(),
+            'op':idLote
+          },success:function(result){
+            var res = JSON.parse(result);
+            var total  = 0;
+            var i = 0;
+            $('#Todos').append('<h2 class="Titulos"> Lotes </h2>');
+            $('#Montos').append('<h2 class="Titulos"> Montos </h2>');
+            while (Object.keys(res.data).length > i) {
+              $('#Todos').append('<h5 class="Lotes">'+res.data[i].Nombre+' : '+' </h5> <br>');
+              $('#Montos').append('<h5 class="Montos">₡ '+res.data[i].monto+' </h5> <br>');
+              total += parseFloat(res.data[i].monto);
+              i++;
+            }
+            $('#Todos').append('<h5 class="Lotes"> Total : '+' </h5> <br>');
+            $('#Montos').append('<h5 class="Montos">₡'+total+' </h5> <br>');
+          }
+      });
+    }
+
   });
 }
 

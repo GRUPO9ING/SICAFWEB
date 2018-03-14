@@ -23,6 +23,7 @@ class Control
 	}
 
 
+
  public function lisCompras($fi,$ff)
  {
 	 $FI = date('Y-m-d', strtotime($fi));
@@ -51,6 +52,21 @@ class Control
 	 } catch (Exception $e) {
 	 	die($e->getMessage());
 	 }
+ }
+
+ public function reporte($fi,$ff,$op){
+	 try {
+		 $FF = date('Y-m-d', strtotime($ff));
+		 $FI = date('Y-m-d', strtotime($fi));
+
+     $stm = $this->pdo->prepare("CALL VentasPorLotes(?,?,?)");
+		 $stm->execute(array($FI,$FF,$op));
+		 return $stm->fetchAll(PDO::FETCH_OBJ);
+
+	 } catch (Exception $e) {
+	 	die($e->getMessage());
+	 }
+
  }
 
 

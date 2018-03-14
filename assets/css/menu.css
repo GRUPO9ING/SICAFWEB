@@ -1,6 +1,26 @@
+.Lotes{
+  color:#000000;
+  transition: 0.3s;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
 
-.error{
-  border: 2px solid red;
+.Montos{
+  color:#10b215;
+  transition: 0.3s;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.Titulos{
+  color:black;
+  transition: 0.3s;
+  display: inline-block;
+  letter-spacing: 2px;
+  font-weight: 300;
+
 }
 
 .a {

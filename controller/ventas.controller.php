@@ -39,6 +39,13 @@ class VentasController
       exit();
     }
 
+    public function generarReporte(){
+
+      $resultSet["data"] = $this->modelV->reporte($_POST['FI'],$_POST['FF'],$_POST['op']);
+      echo json_encode($resultSet);
+      exit();
+    }
+
 
 }
 ?>
