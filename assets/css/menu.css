@@ -29,6 +29,14 @@
   font-weight: 300;
 }
 
+.Montos1{
+  color:#6684c9;
+  transition: 0.3s;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
 .Titulos{
   color:black;
   transition: 0.3s;

@@ -103,6 +103,9 @@ function reporte(){
             var balance  = 0;
             var ventas  = 0;
             var gasto = 0;
+            var balancet  = 0;
+            var ventast = 0;
+            var gastot = 0;
             var i = 0;
 
             console.log(Object.keys(res.data).length);
@@ -122,18 +125,33 @@ function reporte(){
                 gasto = 0;
               }
               $('#Lotes').append('<h5 class="Lotes">'+res.data[i].Nombre+' : '+' </h5> <br>');
-              $('#Ventas').append('<h5 class="Montos">₡ '+ventas+' </h5> <br>');
-              $('#Gastos').append('<h5 class="Montos">₡ '+gasto+' </h5> <br>');
+              $('#Ventas').append('<h5 class="Montos1">₡ '+ventas+' </h5> <br>');
+              $('#Gastos').append('<h5 class="Montos1">₡ '+gasto+' </h5> <br>');
               balance = parseFloat(ventas) - parseFloat(gasto);
                if(balance < 0){
                  balance = balance *-1;
                  $('#Balance').append('<h5 class="Nega"> - ₡ '+balance+' </h5> <br>');
                }
                else {
+                 balancet += balance;
                  $('#Balance').append('<h5 class="Posi"> ₡ '+balance+' </h5> <br>');
                }
+               gastot += parseFloat(gasto);
+               ventast += parseFloat(ventas);
                balance =0;
               i++;
+            }
+            balancet = parseFloat(ventast) - parseFloat(gastot);
+            $('#Lotes').append('<h5 class="Lotes">Totales : '+' </h5> <br>');
+            $('#Ventas').append('<h5 class="Montos1">₡ '+ventast+' </h5> <br>');
+            $('#Gastos').append('<h5 class="Montos1">₡ '+gastot+' </h5> <br>');
+            if(balancet < 0){
+              balancet = balancet *-1;
+              $('#Balance').append('<h5 class="Nega"> - ₡ '+balancet+' </h5> <br>');
+            }
+            else {
+
+              $('#Balance').append('<h5 class="Posi"> ₡ '+balancet+' </h5> <br>');
             }
           }
       });
