@@ -70,6 +70,7 @@
                                           </div>
 
                 <br>
+                <input type="hidden" id="SalarioBruto" value="">
                 <div class="text-left">
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Ins"><span class="fa fa-plus"></span> Agregar Insumo</button>
                   </div>

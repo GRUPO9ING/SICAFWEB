@@ -9,8 +9,20 @@ $(document).on("ready", function(){
   });
   listarTRC();
   listar($("#idTC").val());
+
   $("#tablaCols").on("click",".btnSeleccionar", function(){
     d = $(this).parents("tr").find("td");
+    if($("#SalarioBruto").val() == ""){
+      var valor = 0;
+    }else {
+      var valor = $("#SalarioBruto").val();
+    }
+
+    valor = parseFloat(valor)+parseFloat(d[4].innerText);
+
+    console.log(valor);
+    $("#SalarioBruto").val(valor);
+
     $.ajax({
       type:'POST',
       url:'?c=Tc&a=inColTc',
@@ -19,10 +31,11 @@ $(document).on("ready", function(){
       },
       success:function(result)
       {
-        $("#ColDiv").after("<a onclick='hola("+d[0].innerText+");' id="+d[0].innerText+" class='btn btn-primary' value="+d[0].innerText+"><span class='fa fa-trash'> "+d[2].innerText+"</span> </a>");
+        $("#ColDiv").after("<a onclick='hola("+d[0].innerText+","+d[4].innerText+");' id="+d[0].innerText+" class='btn btn-primary' value="+d[0].innerText+"><span class='fa fa-trash'> "+d[2].innerText+"</span> </a>");
         $("#COLS").modal('hide');
       }
     })
+
   });
 
       function validaLong()
@@ -155,7 +168,7 @@ function __(id) {
 }
 
 
-function hola(val){
+function hola(val,bb){
 
   $.ajax({
     type:'POST',
@@ -169,6 +182,21 @@ function hola(val){
       $("#"+val+"").fadeTo(1000, 0.01, function(){
         $("#"+val+"").slideUp(150, function() {
                 $("#"+val+"").remove();
+
+                if($("#SalarioBruto").val() == "")
+                {
+                  var valor = 0;
+                }
+                else
+                 {
+                  var valor = $("#SalarioBruto").val();
+                }
+
+                valor = parseFloat(valor)-parseFloat(bb);
+
+                console.log(valor);
+                $("#SalarioBruto").val(valor);
+
               });
           });
           listar($("#idTC").val());
@@ -346,6 +374,7 @@ function listar(id){
           { "data": "Cedula" },
           { "data": "Nombre" },
           { "data": "Apellido1"},
+          { "data": "SalarioBase","class":"hidden"},
           {"data":null,"defaultContent": "<button class='btn btn-info btnSeleccionar'><span class='fa fa-check'></span>Seleccionar</button>"}
           ],
 

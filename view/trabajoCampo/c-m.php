@@ -20,6 +20,7 @@
                         <th>Nombre</th>
                         <th>Apellido 1</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
