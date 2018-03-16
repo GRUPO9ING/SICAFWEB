@@ -64,14 +64,14 @@ class TcController{
 
     public function InINTC()
     {
-      $resultSet["data"] = $this->modelL->InsertaInsumoTc($_POST['IdInsumo'],$_POST['IDTC'],$_POST['Cantidad']);
+        $resultSet["data"] = $this->modelL->InsertaInsumoTc($_POST['IdInsumo'],$_POST['IDTC'],$_POST['Cantidad']);
       echo json_encode($resultSet);
        exit();
     }
 
     public function InsertarTRC()
     {
-      $result = $this->modelL->InsertarTC($_POST['IdLote'],$_POST['IDTC'],$_POST['Fecha'],$_POST['Horas'],$_POST['Jus']);
+      $result = $this->modelL->InsertarTC($_POST['IdLote'],$_POST['IDTC'],$_POST['Fecha'],$_POST['Horas'],$_POST['Jus'],$_POST['in']);
       echo $result;
        exit();
     }

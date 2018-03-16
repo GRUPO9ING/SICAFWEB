@@ -41,6 +41,7 @@ $(document).on("ready", function(){
 var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
 
 $("#invert").text("₡ "+total);
+$("#invert").val(total);
  console.log($("#invert").innerHTML);
     $.ajax({
       type:'POST',
@@ -103,6 +104,7 @@ function porHora(){
 
     var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
     $("#invert").text("₡ "+total);
+    $("#invert").val(total);
 
   })
 }
@@ -169,7 +171,7 @@ function porHora(){
                                       'Fecha': $("#Fechatc").val(),
                                       'Horas': $("#Hr").val(),
                                       'Jus': $("#jus").val(),
-
+                                      'in':$("#invert").val()
                                       },
                                       beforeSend: function(){
                                           $f.data('locked', true);  // (2)
@@ -264,6 +266,7 @@ function hola(val,bb){
 
                 var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
                 $("#invert").text("₡ "+total);
+                $("#invert").val(total);
                 console.log($("#invert").innerText);
               });
           });
@@ -361,7 +364,7 @@ function actualiza(val){
 
        var total = parseFloat(s) + (parseFloat(valor)*parseFloat(hr));
        $("#invert").text("₡ "+total);
-
+      $("#invert").val(total);
 
      }
    });

@@ -169,7 +169,7 @@ class Lote
   		}
   	}
 
-    public function InsertaInsumoTc($insu,$idtc,$cant){
+   public function InsertaInsumoTc($insu,$idtc,$cant){
       try
    		{
            $sql = "CALL InTCLO(?,?,?)";
@@ -223,6 +223,7 @@ class Lote
       }
 
 
+
       public function ListarTC($fi2,$ff2)
     	{
         $fi = date('Y-m-d', strtotime($fi2));
@@ -241,14 +242,14 @@ class Lote
 
     	}
 
-      public function InsertarTC($idLote,$idTc,$fecha,$horas,$jus)
+      public function InsertarTC($idLote,$idTc,$fecha,$horas,$jus,$inver)
     	{
         $fecha = date('Y-m-d', strtotime($fecha));
     		try
     		{
     			$result = array();
-    			$stm = $this->pdo->prepare("CALL INSERTARTCLO(?,?,?,?,?)");
-    			return $stm->execute(array($idLote,$idTc,$fecha,$horas,$jus));
+    			$stm = $this->pdo->prepare("CALL INSERTARTCLO(?,?,?,?,?,?)");
+    			return $stm->execute(array($idLote,$idTc,$fecha,$horas,$jus,$inver));
     		}
     		catch(Exception $e)
     		{
