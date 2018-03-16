@@ -1,16 +1,18 @@
 $(document).on("ready", function(){
-
+ porHora();
  validaLong();
   $("#jus").val('');
 
   QuitarInsumo();
   $('#creatc').on('click',function(){
     $(".empl").remove();
+    $("#SalarioBruto").val(0);
   });
   listarTRC();
   listar($("#idTC").val());
 
   $("#tablaCols").on("click",".btnSeleccionar", function(){
+
     d = $(this).parents("tr").find("td");
     if($("#SalarioBruto").val() == ""){
       var valor = 0;
@@ -23,6 +25,23 @@ $(document).on("ready", function(){
     console.log(valor);
     $("#SalarioBruto").val(valor);
 
+    if($("#insumos").val() == ""){
+      var insu = 0;
+    }else {
+      var insu = $("#insumos").val();
+    }
+
+     if($("#Hr").val() == ""){
+       var hr = 0;
+     }else {
+       var hr = $("#Hr").val();
+     }
+
+
+var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
+
+$("#invert").text("₡ "+total);
+ console.log($("#invert").innerHTML);
     $.ajax({
       type:'POST',
       url:'?c=Tc&a=inColTc',
@@ -57,6 +76,37 @@ $(document).on("ready", function(){
       }
 
 
+function porHora(){
+  $("#Hr").keyup(function(){
+
+    if($("#SalarioBruto").val() == "")
+    {
+      var valor = 0;
+    }
+    else
+     {
+      var valor = $("#SalarioBruto").val();
+    }
+
+    if($("#insumos").val() == ""){
+      var insu = 0;
+    }else {
+      var insu = $("#insumos").val();
+    }
+
+     if($("#Hr").val() == ""){
+       var hr = 0;
+     }else {
+       var hr = $("#Hr").val();
+     }
+
+
+    var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
+    $("#invert").text("₡ "+total);
+
+  })
+}
+
   $("#frm-InsumoTC").on("submit", function(e){
          e.preventDefault();
          //Guardamos la referencia al formulario
@@ -79,7 +129,7 @@ $(document).on("ready", function(){
                                 var re = JSON.parse(result);
                                 if(re.data[0].dato == 1)
                                 {
-                                listarINS($("#idTC").val());
+                                enjaula($("#idTC").val());
                                 $('#Ins').modal('hide');
                               }
                               else {
@@ -118,7 +168,8 @@ $(document).on("ready", function(){
                                       'IDTC': $("#idTC").val(),
                                       'Fecha': $("#Fechatc").val(),
                                       'Horas': $("#Hr").val(),
-                                      'Jus': $("#jus").val()
+                                      'Jus': $("#jus").val(),
+
                                       },
                                       beforeSend: function(){
                                           $f.data('locked', true);  // (2)
@@ -197,6 +248,23 @@ function hola(val,bb){
                 console.log(valor);
                 $("#SalarioBruto").val(valor);
 
+
+                if($("#insumos").val() == ""){
+                  var insu = 0;
+                }else {
+                  var insu = $("#insumos").val();
+                }
+
+                 if($("#Hr").val() == ""){
+                   var hr = 0;
+                 }else {
+                   var hr = $("#Hr").val();
+                 }
+
+
+                var total = parseFloat(insu) + (parseFloat(valor)*parseFloat(hr));
+                $("#invert").text("₡ "+total);
+                console.log($("#invert").innerText);
               });
           });
           listar($("#idTC").val());
@@ -218,7 +286,7 @@ function QuitarInsumo(){
           'id':d[0].innerText
         },
         success:function(){
-         ListarIns($("#idTC").val());
+         enjaula($("#idTC").val());
         }
 
       });
@@ -233,7 +301,7 @@ $("#TablatrC").on("click",".btnEditarTC", function(){
       $('#TC').modal('show');
       d = $(this).parents("tr").find("td");
       console.log(d[3].innerText);
-      listarINS(d[0].innerText);
+      enjaula(d[0].innerText);
       $("#idTC").val(d[0].innerText);
       $("#Fechatc").val(d[1].innerText);
       $('.selectpicker').selectpicker('val', d[3].innerText);
@@ -251,7 +319,55 @@ $("#TablatrC").on("click",".btnEditarTC", function(){
         }
         }
       });
+
 });
+
+
+
+function enjaula(val)
+{
+listarINS(val);
+actualiza(val);
+}
+
+
+function actualiza(val){
+ $.ajax({
+      type:'POST',
+      url:'?c=tc&a=Actua',
+      data:{
+        'Id':val
+      },
+      success:function(result){
+       var res = JSON.parse(result);
+       var s = res.data[0].Inver;
+
+       if($("#SalarioBruto").val() == "")
+       {
+         var valor = 0;
+       }
+       else
+        {
+         var valor = $("#SalarioBruto").val();
+       }
+        $("#insumos").val(s);
+
+        if($("#Hr").val() == ""){
+          var hr = 0;
+        }else {
+          var hr = $("#Hr").val();
+        }
+
+
+       var total = parseFloat(s) + (parseFloat(valor)*parseFloat(hr));
+       $("#invert").text("₡ "+total);
+
+
+     }
+   });
+
+
+}
 
 
 $('#creatc').on("click",function(){
@@ -261,7 +377,7 @@ $('#creatc').on("click",function(){
     success:function(result){
       var id = JSON.parse(result);
       $("#idTC").val(id.data[0].IdTc);
-      listarINS(id.data[0].IdTc);
+      enjaula(id.data[0].IdTc);
     }
   });
 });
@@ -321,6 +437,7 @@ function listarTRC(){
 
 
 }
+
 
 function listarINS(val){
 

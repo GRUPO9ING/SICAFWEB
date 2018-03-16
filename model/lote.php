@@ -211,6 +211,17 @@ class Lote
     		}
     	}
 
+      public function actualiza($id){
+        try {
+          $stm = $this->pdo->prepare("CALL TotalInsumoXIDTC(?);");
+          $stm->execute(array($id));
+          return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+          die($e->getMessage());
+        }
+
+      }
+
 
       public function ListarTC($fi2,$ff2)
     	{

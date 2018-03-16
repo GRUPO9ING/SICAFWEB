@@ -28,6 +28,12 @@ class TcController{
       exit();
     }
 
+    public function Actua(){
+      $resultSet["data"] = $this->modelL->actualiza($_POST['Id']);
+      echo json_encode($resultSet);
+      exit();
+    }
+
     public function ListarTRC(){
       $resultSet["data"] = $this->modelL->ListarTC($_POST['FI'],$_POST['FF']);
       echo json_encode($resultSet);
