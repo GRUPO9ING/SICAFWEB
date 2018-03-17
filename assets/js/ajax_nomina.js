@@ -519,6 +519,7 @@ $("#tablaNomina").on("click",".btnEditarNomina", function(){
 
 });
 
+
 function consultaHorasAprovechadas(id,fi,ff){
 
   $.ajax({
@@ -624,7 +625,21 @@ function Planilla(){
           {"data":null,"defaultContent": "<buttom class='btn btn-primary btnAprobarPlanilla'><span class='fa fa-check'></span></buttom> \n\
           <button class='btn btn-danger btnRechazar' id='EPersona'><span class='fa fa-times'></span></button>" }
           ],
-
+          "columnDefs": [
+                            // El salario de la columna se vuelve rojo
+                            {
+                                "targets": [2], // El objetivo de la columna de posición, desde cero.
+                                "data": "Estado", // La inclusión de datos
+                                      "render": function(data, type, full) { // Devuelve el contenido personalizado
+                                    if(data == 'Pendiente'){
+                                        return "<span class='pendiente'>" + data + "</span>";
+                                    }
+                                    else {
+                                      return "<span class='aprobado'>" + data + "</span>";
+                                    }
+                                }
+                              }
+                              ],
  "language": idioma_espanol,
  dom: "<'row'<'form-inline' <'col-sm-offset-5'B>>>"
      +"<'row' <'form-inline' <'col-sm-1'f>>>"

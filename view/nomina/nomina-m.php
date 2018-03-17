@@ -20,7 +20,7 @@
                          <label class="col col-md-3">Fecha Inicio</label>
                      <div class="col col-md-9">
                    <div class="input-group">
-                         <input type="text" placeholder="Fecha Inicio" name="FechaInicio" id="FI" class="col col-md-12 fecha" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                         <input type="text" placeholder="Fecha Inicio" name="FechaInicio" id="FI" class="col col-md-12 fecha"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                    </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                            <label class="col col-md-3">Fecha Fin</label>
                        <div class="col col-md-9">
                      <div class="input-group">
-                           <input type="text" placeholder="Fecha Fin" name="FechaFin" id="FF" class="col col-md-12 fecha" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                           <input type="text" placeholder="Fecha Fin" name="FechaFin" id="FF" class="col col-md-12 fecha"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                      </div>
                       </div>
                   </div>
