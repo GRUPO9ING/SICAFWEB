@@ -117,17 +117,17 @@
                                                  </a>
                                              </li>
                                       </ul>
-                               <?php if ($_SESSION['rol'] == 1){
+                               <!--<?php if ($_SESSION['rol'] == 1){
                                  echo '<li>
-                                     <a href="?c=Usuarios">
+                                     <a href="?c=Usuario">
                                        <i class="fa fa-user fa-lg"></i> Gestion de usuario
                                      </a>
                                  </li>';
-                               } ?>
+                               } ?>-->
 
                               <li>
-                                  <a href="#">
-                                    <i class="fa fa-unlock fa-lg"></i> Cerrar Sesión
+                                  <a href="?c=login&a=cerrar">
+                                    <i class="fa fa-lock fa-lg"></i> <?php //echo $_SESSION['user']?> Cerrar Sesión
                                   </a>
                               </li>
 

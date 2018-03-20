@@ -36,6 +36,11 @@ class LoginController
       echo true;
       exit();
     }
+
+    public function cerrar(){
+      session_destroy();
+      require_once 'view/login/login.php';
+    }
 }
 
 ?>

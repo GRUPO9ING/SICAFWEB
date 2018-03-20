@@ -3,15 +3,57 @@ $(document).on("ready", function(){
   /**/
   limpiar();
   /**/
+  guardar();
+  /**/
   contraIgual();
   contra2();
   /**/
-    $("#frm-usuario").on("submit", function(e){
-           e.preventDefault();
+});
+
+  validator = $("#frm-usuario").validate();
+  $.validator.addMethod("letras_espacios", function (value, element) {
+  return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+
+ }, "No se permiten caracteres especiales");
+
+
+ $.validator.addMethod("pw", function (value, element) {
+ return this.optional(element) || /^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ]+$/.test(value);
+}, "");
+
+
+/*********************************************************************************************/
+function guardar(){
+
+    $("#Enviar").on("click", function(){
            //Guardamos la referencia al formulario
-           var $f = $(this);
+
+           validatorUsuario = $("#frm-usuario").validate();
+           validatorUsuario.destroy();
+           validatorUsuario = $("#frm-usuario").validate({
+               event: "blur",
            //Comprobamos si el semaforo esta en verde (1)
-           if ($f.data('locked') != undefined && !$f.data('locked')){
+           errorElement: "span",
+           rules: {
+             nom: {required: true, letras_espacios: true, rangelength: [1, 30]},
+             ap1: {required: true, letras_espacios: true, rangelength: [1, 30]},
+             ap2: {required: true, letras_espacios: true, rangelength: [1, 30]},
+             user: {required: true, letras_espacios: true, rangelength: [4, 30]},
+             pw1: {required: true, pw: true, rangelength: [4, 30]},
+             pw2: {required: true, pw: true, rangelength: [4, 30]}
+
+           },
+           messages: {
+             nom: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales",rangelength: "Máximo {1} caracteres"},
+             ap1: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales" ,rangelength: "Máximo {1} caracteres"},
+             ap2: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales",rangelength: "Máximo {1} caracteres" },
+             user: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales" ,rangelength: "Máximo {1} caracteres"},
+             pw1: {required: "Es necesario un contraseña",rangelength: "Máximo {1} caracteres"},
+             pw2: {required: "Debe confirmar la contraseña",rangelength: "Máximo {1} caracteres"}
+
+           },
+           submitHandler: function (form)
+           {
 
            if($("#admin").prop("checked")){
              var a = 1;
@@ -21,6 +63,7 @@ $(document).on("ready", function(){
              console.log(a);
 
            }
+
             //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
                              $.ajax({
                                 type: 'POST',
@@ -35,9 +78,6 @@ $(document).on("ready", function(){
                                     'rol': a
 
                                   },
-                                beforeSend: function(){
-                                    $f.data('locked', true);  // (2)
-                                },
                                 success: function(result){
                                   $('#mGuardar').modal('hide');
                                   if(result == true)
@@ -62,22 +102,18 @@ $(document).on("ready", function(){
                                       });
 
                                   }
-                               },
-                               complete: function(){ $f.data('locked', false);  // (3)
-                          }
+                                },
+                                complete: function(){
+                                   $('.mensajes').html('');
+                               }
+
                         });
                         }
-                        else
-                        {
-                         //Bloqueado!!!
-                         //alert("locked");
-                        }
-
     });
 /**/
 
 });
-
+}
 
 function __(id) {
   return document.getElementById(id);

@@ -6,6 +6,7 @@
 			 <meta charset="utf-8" />
 				<!--<script src="assets/js/jquery-1.12.4.js"></script>
        -->
+
 				<link rel="stylesheet" href="assets/css/jquery-ui.css" />
 				<script src="assets/js/jquery-1.9.1.js"></script>
 				<script src="assets/js/jquery-ui.js"></script>
@@ -41,7 +42,8 @@
 				<script src="assets/js/buttons.html5.min.js"></script>
 				<!--Libreria para imprimir-->
 				<script src="assets/js/buttons.print.min.js"></script>
-
+     	<!--Libreria para validar---->
+			 <script src="assets/js/jquery.validate.js" charset="utf-8"></script>
 	</head>
 	<link rel="shortcut icon" type="image/x-icon" href="assets/imagenes/Sicaf1.png">
     <body>

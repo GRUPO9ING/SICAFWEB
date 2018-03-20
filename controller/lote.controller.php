@@ -11,7 +11,7 @@ class LoteController
     }
 
     public function Index(){
-        require_once 'view/lote/index.php';
+        require_once 'view/ff.php';
     }
 
     public function Crud(){

@@ -28,11 +28,11 @@ CREATE TABLE `cibl17` (
   `Ventas` float DEFAULT '0',
   PRIMARY KEY (`IdBL`),
   KEY `FKIDFA` (`IdLote`)
-) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cibl17` */
 
-insert  into `cibl17`(`IdBL`,`IdLote`,`Nombre`,`Gasto`,`Ventas`) values (200,1,'Santa Rita',2640,1348400),(201,2,'Chicho Land',NULL,73100),(202,3,'Napo',120,140);
+insert  into `cibl17`(`IdBL`,`IdLote`,`Nombre`,`Gasto`,`Ventas`) values (263,1,'Santa Rita',29800,NULL),(264,2,'Chicho Land',NULL,NULL),(265,3,'Napo',NULL,NULL);
 
 /*Table structure for table `cicf18` */
 
@@ -155,7 +155,7 @@ CREATE TABLE `inin08` (
 
 /*Data for the table `inin08` */
 
-insert  into `inin08`(`IdInsumo`,`IdTI`,`Nombre`,`Cantidad`,`FechaComp`,`PrecioUnit`,`Detalle`,`FechaVence`,`Procedencia`) values (1,1,'Insecticida',25,'2018-03-04',20,'Niguno','2018-03-31','Super del chino');
+insert  into `inin08`(`IdInsumo`,`IdTI`,`Nombre`,`Cantidad`,`FechaComp`,`PrecioUnit`,`Detalle`,`FechaVence`,`Procedencia`) values (1,1,'Insecticida',7,'2018-03-04',20,'Niguno','2018-03-31','Super del chino');
 
 /*Table structure for table `inlo30` */
 
@@ -170,11 +170,11 @@ CREATE TABLE `inlo30` (
   KEY `FKTCLO` (`IdTC`),
   CONSTRAINT `FKCLO` FOREIGN KEY (`IdLote`) REFERENCES `selo09` (`IdLote`),
   CONSTRAINT `FKTCLO` FOREIGN KEY (`IdTC`) REFERENCES `intc10` (`IdTdCampo`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inlo30` */
 
-insert  into `inlo30`(`IdINLO`,`IdLote`,`IdTC`) values (1,1,1),(3,1,29),(4,1,54),(5,1,60),(6,1,62),(7,1,63),(8,3,71),(9,3,72),(10,1,75),(11,2,76),(12,1,94),(13,2,97),(14,1,98),(15,1,100),(16,2,102),(21,2,122),(22,1,124),(23,1,125);
+insert  into `inlo30`(`IdINLO`,`IdLote`,`IdTC`) values (1,1,1),(3,1,29),(4,1,54),(5,1,60),(6,1,62),(7,1,63),(8,3,71),(9,3,72),(10,1,75),(11,2,76),(12,1,94),(13,2,97),(14,1,98),(15,1,100),(16,2,102),(21,2,122),(22,1,124),(23,1,125),(26,2,131),(27,1,134),(28,1,135),(29,1,136),(30,1,137),(31,2,138),(32,2,139),(33,1,140),(34,1,141);
 
 /*Table structure for table `intc10` */
 
@@ -186,12 +186,13 @@ CREATE TABLE `intc10` (
   `Total` float NOT NULL,
   `Horas` int(11) DEFAULT '8',
   `Justificacion` varchar(100) DEFAULT NULL,
+  `Inversion` float DEFAULT NULL,
   PRIMARY KEY (`IdTdCampo`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=latin1;
 
 /*Data for the table `intc10` */
 
-insert  into `intc10`(`IdTdCampo`,`FechaTC`,`Total`,`Horas`,`Justificacion`) values (1,'2018-03-04',1200,8,NULL),(28,'2018-03-07',240,8,NULL),(29,'2018-03-06',1440,4,'Chapiar Lote'),(54,'2018-04-14',6000,5,'Chapiar'),(60,'2018-04-05',1200,10,'Chapiar'),(61,'2018-03-09',0,8,NULL),(62,'2018-04-11',960,10,'Chapiar'),(63,'2018-05-02',120,12,'adsad'),(64,'2018-03-09',0,8,NULL),(65,'2018-03-09',0,8,NULL),(66,'2018-03-09',0,8,NULL),(67,'2018-03-11',0,8,NULL),(68,'2018-03-11',0,8,NULL),(69,'2018-03-11',0,8,NULL),(70,'2018-03-13',0,8,NULL),(71,'2018-03-14',100,5,'adsasad'),(72,'2018-03-14',20,6,'chapiar'),(73,'2018-03-14',0,8,NULL),(74,'2018-03-14',0,8,NULL),(75,'2018-03-15',20,5,'saalñskdkasd'),(76,'2018-03-15',200,6,'jkajdsa'),(77,'2018-03-16',0,8,NULL),(78,'2018-03-16',0,8,NULL),(79,'2018-03-16',0,8,NULL),(80,'2018-03-16',0,8,NULL),(81,'2018-03-16',0,8,NULL),(82,'2018-03-16',0,8,NULL),(83,'2018-03-16',0,8,NULL),(84,'2018-03-16',0,8,NULL),(85,'2018-03-16',0,8,NULL),(86,'2018-03-16',0,8,NULL),(87,'2018-03-16',0,8,NULL),(88,'2018-03-16',0,8,NULL),(89,'2018-03-16',0,8,NULL),(90,'2018-03-16',0,8,NULL),(91,'2018-03-16',0,8,NULL),(92,'2018-03-16',0,8,NULL),(93,'2018-03-16',0,8,NULL),(94,'2018-03-16',200,6,'kjsakjd'),(95,'2018-03-16',0,8,NULL),(96,'2018-03-16',0,8,NULL),(97,'2018-03-16',200,8,'kasjdaslk'),(98,'2018-03-16',60,5,'lkasslkajd'),(99,'2018-03-16',0,8,NULL),(100,'2018-03-16',20,4,'zakcxjzkjc'),(101,'2018-03-16',0,8,NULL),(102,'2018-03-16',40,5,'aksjdla'),(103,'2018-03-16',20,8,NULL),(104,'2018-03-16',20,8,NULL),(105,'2018-03-16',20,8,NULL),(106,'2018-03-16',20,8,NULL),(107,'2018-03-16',40,8,NULL),(108,'2018-03-16',20,8,NULL),(109,'2018-03-16',20,8,NULL),(110,'2018-03-16',20,8,NULL),(111,'2018-03-16',20,8,NULL),(112,'2018-03-16',20,8,NULL),(113,'2018-03-16',20,8,NULL),(114,'2018-03-16',20,8,NULL),(115,'2018-03-16',20,8,NULL),(116,'2018-03-16',20,8,NULL),(117,'2018-03-16',60,8,NULL),(118,'2018-03-16',20,8,NULL),(119,'2018-03-16',0,8,NULL),(120,'2018-03-16',20,8,NULL),(121,'2018-03-16',40,8,NULL),(122,'2018-03-16',40,10,'adksajda'),(123,'2018-03-16',0,8,NULL),(124,'2018-03-16',100,10,'sadjas'),(125,'2018-03-16',200,10,'sadjas');
+insert  into `intc10`(`IdTdCampo`,`FechaTC`,`Total`,`Horas`,`Justificacion`,`Inversion`) values (1,'2018-03-04',1200,8,NULL,NULL),(28,'2018-03-07',240,8,NULL,NULL),(29,'2018-03-06',1440,4,'Chapiar Lote',NULL),(54,'2018-04-14',6000,5,'Chapiar',NULL),(60,'2018-04-05',1200,10,'Chapiar',NULL),(61,'2018-03-09',0,8,NULL,NULL),(62,'2018-04-11',960,10,'Chapiar',NULL),(63,'2018-05-02',120,12,'adsad',NULL),(64,'2018-03-09',0,8,NULL,NULL),(65,'2018-03-09',0,8,NULL,NULL),(66,'2018-03-09',0,8,NULL,NULL),(67,'2018-03-11',0,8,NULL,NULL),(68,'2018-03-11',0,8,NULL,NULL),(69,'2018-03-11',0,8,NULL,NULL),(70,'2018-03-13',0,8,NULL,NULL),(71,'2018-03-14',100,5,'adsasad',NULL),(72,'2018-03-14',20,6,'chapiar',NULL),(73,'2018-03-14',0,8,NULL,NULL),(74,'2018-03-14',0,8,NULL,NULL),(75,'2018-03-15',20,5,'saalñskdkasd',NULL),(76,'2018-03-15',200,6,'jkajdsa',NULL),(77,'2018-03-16',0,8,NULL,NULL),(78,'2018-03-16',0,8,NULL,NULL),(79,'2018-03-16',0,8,NULL,NULL),(80,'2018-03-16',0,8,NULL,NULL),(81,'2018-03-16',0,8,NULL,NULL),(82,'2018-03-16',0,8,NULL,NULL),(83,'2018-03-16',0,8,NULL,NULL),(84,'2018-03-16',0,8,NULL,NULL),(85,'2018-03-16',0,8,NULL,NULL),(86,'2018-03-16',0,8,NULL,NULL),(87,'2018-03-16',0,8,NULL,NULL),(88,'2018-03-16',0,8,NULL,NULL),(89,'2018-03-16',0,8,NULL,NULL),(90,'2018-03-16',0,8,NULL,NULL),(91,'2018-03-16',0,8,NULL,NULL),(92,'2018-03-16',0,8,NULL,NULL),(93,'2018-03-16',0,8,NULL,NULL),(94,'2018-03-16',200,6,'kjsakjd',NULL),(95,'2018-03-16',0,8,NULL,NULL),(96,'2018-03-16',0,8,NULL,NULL),(97,'2018-03-16',200,8,'kasjdaslk',NULL),(98,'2018-03-16',60,5,'lkasslkajd',NULL),(99,'2018-03-16',0,8,NULL,NULL),(100,'2018-03-16',20,4,'zakcxjzkjc',NULL),(101,'2018-03-16',0,8,NULL,NULL),(102,'2018-03-16',40,5,'aksjdla',NULL),(103,'2018-03-16',20,8,NULL,NULL),(104,'2018-03-16',20,8,NULL,NULL),(105,'2018-03-16',20,8,NULL,NULL),(106,'2018-03-16',20,8,NULL,NULL),(107,'2018-03-16',40,8,NULL,NULL),(108,'2018-03-16',20,8,NULL,NULL),(109,'2018-03-16',20,8,NULL,NULL),(110,'2018-03-16',20,8,NULL,NULL),(111,'2018-03-16',20,8,NULL,NULL),(112,'2018-03-16',20,8,NULL,NULL),(113,'2018-03-16',20,8,NULL,NULL),(114,'2018-03-16',20,8,NULL,NULL),(115,'2018-03-16',20,8,NULL,NULL),(116,'2018-03-16',20,8,NULL,NULL),(117,'2018-03-16',60,8,NULL,NULL),(118,'2018-03-16',20,8,NULL,NULL),(119,'2018-03-16',0,8,NULL,NULL),(120,'2018-03-16',20,8,NULL,NULL),(121,'2018-03-16',40,8,NULL,NULL),(122,'2018-03-16',40,10,'adksajda',NULL),(123,'2018-03-16',0,8,NULL,NULL),(124,'2018-03-16',100,10,'sadjas',NULL),(125,'2018-03-16',200,10,'sadjas',NULL),(126,'2018-03-16',200,8,NULL,NULL),(127,'2018-03-16',0,8,NULL,NULL),(128,'2018-03-16',200,8,NULL,NULL),(129,'2018-03-16',0,8,NULL,NULL),(130,'2018-03-16',0,8,NULL,NULL),(131,'2018-03-16',40,4,'jdaskd',NULL),(132,'2018-03-16',0,8,NULL,NULL),(133,'2018-03-16',0,8,NULL,NULL),(134,'2018-03-16',0,5,'akljsld',NULL),(135,'2018-03-17',0,5,'lsjadklajd',NULL),(136,'2018-03-17',0,5,'ZÑLXkZX',NULL),(137,'2018-03-17',300,10,'klsdljax',NULL),(138,'2018-03-17',200,10,'aldjlkasjd',0),(139,'2018-03-17',200,5,'kdlksajd',0),(140,'2018-03-17',200,10,'.,kada',25200),(141,'2018-03-18',200,8,'sdfsdf',29800);
 
 /*Table structure for table `intco28` */
 
@@ -206,11 +207,11 @@ CREATE TABLE `intco28` (
   KEY `FKCOLTDC` (`IdCol`),
   CONSTRAINT `FKCOLTDC` FOREIGN KEY (`IdCol`) REFERENCES `plco03` (`IdColaborador`),
   CONSTRAINT `FKIDCOLT` FOREIGN KEY (`IdTdCampo`) REFERENCES `intc10` (`IdTdCampo`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 
 /*Data for the table `intco28` */
 
-insert  into `intco28`(`IdTCOL`,`IdTdCampo`,`IdCol`) values (1,1,42),(2,29,42),(3,29,43),(4,54,42),(5,60,43),(6,60,42),(7,61,43),(8,61,42),(9,63,43),(10,63,42),(12,71,42),(13,72,43),(14,75,43),(15,76,42),(18,81,42),(20,83,43),(21,84,42),(22,84,43),(23,86,42),(24,87,42),(25,88,43),(26,88,42),(30,91,42),(31,91,43),(34,93,43),(35,93,42),(36,94,42),(37,94,43),(38,97,43),(39,97,42),(40,98,43),(41,98,42),(42,100,43),(43,101,43),(55,122,43),(56,122,42),(57,123,42),(58,124,43),(59,124,42);
+insert  into `intco28`(`IdTCOL`,`IdTdCampo`,`IdCol`) values (1,1,42),(2,29,42),(3,29,43),(4,54,42),(5,60,43),(6,60,42),(7,61,43),(8,61,42),(9,63,43),(10,63,42),(12,71,42),(13,72,43),(14,75,43),(15,76,42),(18,81,42),(20,83,43),(21,84,42),(22,84,43),(23,86,42),(24,87,42),(25,88,43),(26,88,42),(30,91,42),(31,91,43),(34,93,43),(35,93,42),(36,94,42),(37,94,43),(38,97,43),(39,97,42),(40,98,43),(41,98,42),(42,100,43),(43,101,43),(55,122,43),(56,122,42),(57,123,42),(58,124,43),(59,124,42),(60,126,43),(61,126,42),(65,129,43),(66,129,42),(67,130,42),(68,131,42),(69,132,42),(70,133,42),(71,134,43),(72,135,43),(73,136,42),(74,137,42),(75,138,42),(76,138,43),(77,139,43),(78,140,43),(79,141,42),(80,141,43);
 
 /*Table structure for table `inti07` */
 
@@ -220,11 +221,11 @@ CREATE TABLE `inti07` (
   `IdTI` int(11) NOT NULL AUTO_INCREMENT,
   `Tipo` varchar(30) NOT NULL,
   PRIMARY KEY (`IdTI`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inti07` */
 
-insert  into `inti07`(`IdTI`,`Tipo`) values (1,'Fumigable'),(2,'Fertilizante');
+insert  into `inti07`(`IdTI`,`Tipo`) values (1,'Fumigable'),(2,'Fertilizante'),(3,'43534');
 
 /*Table structure for table `intl29` */
 
@@ -241,11 +242,11 @@ CREATE TABLE `intl29` (
   KEY `FKINTDC` (`IdTC`),
   CONSTRAINT `FKINLOT` FOREIGN KEY (`IdInsumo`) REFERENCES `inin08` (`IdInsumo`),
   CONSTRAINT `FKINTDC` FOREIGN KEY (`IdTC`) REFERENCES `intc10` (`IdTdCampo`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 /*Data for the table `intl29` */
 
-insert  into `intl29`(`IdTCL`,`IdInsumo`,`IdTC`,`Cantidad`,`Total`) values (1,1,1,10,1200),(2,1,28,2,240),(3,1,29,12,1440),(4,1,54,50,6000),(5,1,60,10,1200),(6,1,62,8,960),(7,1,63,1,120),(8,1,71,5,100),(9,1,72,1,20),(10,1,75,1,20),(11,1,76,5,100),(12,1,76,5,100),(13,1,94,5,100),(14,1,94,5,100),(15,1,97,10,200),(16,1,98,1,20),(17,1,98,1,20),(18,1,98,1,20),(19,1,100,1,20),(20,1,102,1,20),(21,1,102,1,20),(22,1,103,1,20),(23,1,104,1,20),(24,1,105,1,20),(25,1,106,1,20),(26,1,107,1,20),(27,1,107,1,20),(28,1,108,1,20),(29,1,109,1,20),(30,1,110,1,20),(31,1,111,1,20),(32,1,112,1,20),(33,1,113,1,20),(34,1,114,1,20),(35,1,115,1,20),(36,1,116,1,20),(37,1,117,1,20),(38,1,117,1,20),(39,1,117,1,20),(40,1,118,1,20),(41,1,120,1,20),(42,1,121,1,20),(43,1,121,1,20),(44,1,122,1,20),(45,1,122,1,20),(46,1,124,5,100),(47,1,125,5,100),(48,1,125,5,100);
+insert  into `intl29`(`IdTCL`,`IdInsumo`,`IdTC`,`Cantidad`,`Total`) values (1,1,1,10,1200),(2,1,28,2,240),(3,1,29,12,1440),(4,1,54,50,6000),(5,1,60,10,1200),(6,1,62,8,960),(7,1,63,1,120),(8,1,71,5,100),(9,1,72,1,20),(10,1,75,1,20),(11,1,76,5,100),(12,1,76,5,100),(13,1,94,5,100),(14,1,94,5,100),(15,1,97,10,200),(16,1,98,1,20),(17,1,98,1,20),(18,1,98,1,20),(19,1,100,1,20),(20,1,102,1,20),(21,1,102,1,20),(22,1,103,1,20),(23,1,104,1,20),(24,1,105,1,20),(25,1,106,1,20),(26,1,107,1,20),(27,1,107,1,20),(28,1,108,1,20),(29,1,109,1,20),(30,1,110,1,20),(31,1,111,1,20),(32,1,112,1,20),(33,1,113,1,20),(34,1,114,1,20),(35,1,115,1,20),(36,1,116,1,20),(37,1,117,1,20),(38,1,117,1,20),(39,1,117,1,20),(40,1,118,1,20),(41,1,120,1,20),(42,1,121,1,20),(43,1,121,1,20),(44,1,122,1,20),(45,1,122,1,20),(46,1,124,5,100),(47,1,125,5,100),(48,1,125,5,100),(49,1,126,10,200),(50,1,128,10,200),(51,1,129,1,20),(52,1,131,1,20),(53,1,131,1,20),(54,1,133,11,220),(55,1,134,11,220),(56,1,135,11,220),(57,1,136,5,100),(58,1,137,15,300),(59,1,138,10,200),(60,1,139,10,200),(61,1,140,10,200),(62,1,141,10,200);
 
 /*Table structure for table `plcc26` */
 
@@ -339,11 +340,11 @@ CREATE TABLE `plno24` (
   KEY `FKPLANILLA` (`IdPlanilla`),
   CONSTRAINT `FKNOMICOLA` FOREIGN KEY (`IdColaborador`) REFERENCES `plco03` (`IdColaborador`),
   CONSTRAINT `FKPLANILLA` FOREIGN KEY (`IdPlanilla`) REFERENCES `plpl25` (`IdPlanilla`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Data for the table `plno24` */
 
-insert  into `plno24`(`IdNomina`,`IdColaborador`,`fInicio`,`fFin`,`IdPlanilla`,`MontoNomina`,`HE`) values (2,42,'2018-03-01','2018-03-15',8,144000,0),(5,42,'2018-03-01','2018-03-15',8,144000,0),(8,42,'2018-03-15','2018-03-31',3,144000,0),(10,42,'2018-04-01','2018-03-31',4,144000,0),(11,42,'2018-04-15','2018-04-30',5,144000,0),(12,43,'2018-04-15','2018-04-30',5,325000,0),(14,42,'2018-05-01','2018-05-15',6,144000,0),(15,43,'2018-05-01','2018-05-15',6,325000,0),(17,42,'2018-03-01','2018-03-30',7,144000,0),(18,43,'2018-03-01','2018-03-30',7,325000,0),(20,42,'2018-03-01','2018-03-15',8,144000,0),(21,43,'2018-03-01','2018-03-15',8,325000,0),(23,42,'2018-01-01','2018-01-15',9,144000,0),(24,43,'2018-01-01','2018-01-15',9,325000,0);
+insert  into `plno24`(`IdNomina`,`IdColaborador`,`fInicio`,`fFin`,`IdPlanilla`,`MontoNomina`,`HE`) values (2,42,'2018-03-01','2018-03-15',8,144000,0),(5,42,'2018-03-01','2018-03-15',8,144000,0),(8,42,'2018-03-15','2018-03-31',10,144000,0),(10,42,'2018-04-01','2018-03-31',4,144000,0),(11,42,'2018-04-15','2018-04-30',5,144000,0),(12,43,'2018-04-15','2018-04-30',5,325000,0),(14,42,'2018-05-01','2018-05-15',6,144000,0),(15,43,'2018-05-01','2018-05-15',6,325000,0),(17,42,'2018-03-01','2018-03-30',7,144000,0),(18,43,'2018-03-01','2018-03-30',7,325000,0),(20,42,'2018-03-01','2018-03-15',8,144000,0),(21,43,'2018-03-01','2018-03-15',8,325000,0),(23,42,'2018-01-01','2018-01-15',9,144000,0),(24,43,'2018-01-01','2018-01-15',9,325000,0),(25,42,'2018-03-15','2018-03-31',10,144000,0),(26,43,'2018-03-15','2018-03-31',10,325000,0);
 
 /*Table structure for table `plpl25` */
 
@@ -356,11 +357,11 @@ CREATE TABLE `plpl25` (
   `FechaInicio` date DEFAULT NULL,
   `FechaFin` date DEFAULT NULL,
   PRIMARY KEY (`IdPlanilla`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `plpl25` */
 
-insert  into `plpl25`(`IdPlanilla`,`Total`,`Estado`,`FechaInicio`,`FechaFin`) values (1,288000,'Pendiente',NULL,NULL),(2,576000,'Pendiente',NULL,NULL),(3,288000,'Pendiente',NULL,NULL),(4,144000,'Pendiente',NULL,NULL),(5,469000,'Pendiente',NULL,NULL),(6,469000,'Pendiente',NULL,NULL),(7,469000,'Pendiente',NULL,NULL),(8,757000,'Pendiente',NULL,NULL),(9,469000,'Aprobado','2018-01-01','2018-01-15');
+insert  into `plpl25`(`IdPlanilla`,`Total`,`Estado`,`FechaInicio`,`FechaFin`) values (1,288000,'Pendiente',NULL,NULL),(2,576000,'Pendiente',NULL,NULL),(3,288000,'Pendiente',NULL,NULL),(4,144000,'Pendiente',NULL,NULL),(5,469000,'Pendiente',NULL,NULL),(6,469000,'Pendiente',NULL,NULL),(7,469000,'Pendiente',NULL,NULL),(8,757000,'Pendiente',NULL,NULL),(9,469000,'Aprobado','2018-01-01','2018-01-15'),(10,613000,'Pendiente','2018-03-15','2018-03-31');
 
 /*Table structure for table `plse29` */
 
@@ -461,16 +462,19 @@ CREATE TABLE `sgro04` (
 DROP TABLE IF EXISTS `sgus05`;
 
 CREATE TABLE `sgus05` (
-  `IdPersona` int(11) NOT NULL,
   `IdUser` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(100) NOT NULL,
   `pass` varchar(255) NOT NULL,
-  PRIMARY KEY (`IdUser`),
-  KEY `FKIDPERSONA` (`IdPersona`),
-  CONSTRAINT `FKIDPERSONA` FOREIGN KEY (`IdPersona`) REFERENCES `uspr01` (`IdPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Nombre` varchar(100) DEFAULT NULL,
+  `Apellido1` varchar(100) DEFAULT NULL,
+  `Apellido2` varchar(100) DEFAULT NULL,
+  `Rol` int(11) DEFAULT '0',
+  PRIMARY KEY (`IdUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sgus05` */
+
+insert  into `sgus05`(`IdUser`,`userName`,`pass`,`Nombre`,`Apellido1`,`Apellido2`,`Rol`) values (1,'Yoher','Obando','Duarte','bisash','Napo',0),(2,'bisash','Napo','Yoher','Obando','Duarte',1),(3,'bisash','414551ecf626aa80cd5807dc9826f18d','Yoher','Obando','Duarte',1),(4,'napito','47b4d0c9445131dec646a489805f0f52','Raul','Zamora','Obando',0),(5,'napo','414551ecf626aa80cd5807dc9826f18d','Yoher','Obando','Duarte',1),(6,'josesage','47b4d0c9445131dec646a489805f0f52','Jose manuel','Moyorga','Alvarez',1),(7,'Fabi','47b4d0c9445131dec646a489805f0f52','Fabiola','Camacho','Alvarado',0),(8,'chicho','47b4d0c9445131dec646a489805f0f52','Ismael','Reyes','Diaz',0);
 
 /*Table structure for table `uspr01` */
 
@@ -688,7 +692,7 @@ BEGIN
 	       
 	       
     UPDATE cibl17 b,intc10 t,inlo30 l,selo09 o
-    SET Gasto = (   SELECT sum(t.Total) FROM intc10 t,inlo30 l,selo09 o
+    SET Gasto = (   SELECT sum(t.Inversion) FROM intc10 t,inlo30 l,selo09 o
 		    WHERE t.IdTdCampo IN(SELECT IdTdCampo FROM intco28)
 		    AND o.IdLote = l.IdLote
 		    and b.IdLote = o.IdLote
@@ -817,6 +821,19 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `dataUsuario` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `dataUsuario` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `dataUsuario`()
+BEGIN
+    select IdUser,Nombre,Apellido1,Apellido2
+    from sgus05;
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `DlTCO` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `DlTCO` */;
@@ -896,20 +913,6 @@ BEGIN
     END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `IGC22` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `IGC22` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `IGC22`()
-BEGIN
-    INSERT INTO plgc23 (IdGasto,IdColaborador)
-    VALUES (pIdGasto,pColaborador)
-    
-    ;END */$$
-DELIMITER ;
-
 /* Procedure structure for procedure `GeneraNominas` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `GeneraNominas` */;
@@ -938,6 +941,20 @@ from plpl25;
           and plno24.fFin = pFF;
                     
           END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `IGC22` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `IGC22` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `IGC22`()
+BEGIN
+    INSERT INTO plgc23 (IdGasto,IdColaborador)
+    VALUES (pIdGasto,pColaborador)
+    
+    ;END */$$
 DELIMITER ;
 
 /* Procedure structure for procedure `IIN007` */
@@ -1087,7 +1104,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERTARTCLO`(IN pidL int, in pitdc int,in fec date,in pho int, in jus varchar(100))
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `INSERTARTCLO`(IN pidL int, in pitdc int,in fec date,in pho int, in jus varchar(100),in inver float)
 BEGIN
     Declare ver int;
     set ver = 0;
@@ -1112,7 +1129,8 @@ BEGIN
     update intc10
     set FechaTC = fec,
     Horas = pho,
-    Justificacion = jus
+    Justificacion = jus,
+    Inversion = inver
     where IdTdCampo = pitdc;
     END */$$
 DELIMITER ;
@@ -1145,6 +1163,8 @@ BEGIN
     declare tc float;
     declare ff float;
     
+    
+    
     select Total into tc
     from intc10
     where IdTdCampo = pidtc;
@@ -1165,7 +1185,6 @@ BEGIN
     update intc10
     set Total = intc10.Total + (precio*catidad)
     where IdTdCampo = pidtc;
-    
     
     update inin08
     set Cantidad = (total - catidad)
@@ -1456,6 +1475,19 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `newUser` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `newUser` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `newUser`(in userN varchar(100),in passp varchar(255),in nom varchar(100),IN ap1 VARCHAR(100),IN ap2 VARCHAR(100),in rol int)
+BEGIN
+    insert into sgus05(userName,pass,Nombre,Apellido1,Apellido2,Rol)
+    values (userN,passp,nom,ap1,ap2,rol);
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `NOM24` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `NOM24` */;
@@ -1514,7 +1546,7 @@ DELIMITER $$
 BEGIN
    
  
-    SELECT t.IdTdCampo,t.FechaTC,concat("₡",t.Total) as Total,o.IdLote,o.Nombre
+    SELECT t.IdTdCampo,t.FechaTC,concat("₡",t.Inversion) as Total,o.IdLote,o.Nombre
     FROM intc10 t,inlo30 l,selo09 o
     WHERE t.IdTdCampo IN(select IdTdCampo from intco28)
     and o.IdLote = l.IdLote
@@ -1523,44 +1555,6 @@ BEGIN
     and t.Total > 0;
     
     
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `todasVentas` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `todasVentas` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `todasVentas`(in f1 date, in f2 date)
-BEGIN
-    
-    select f.IdFac,p.Nombre as 'Cliente',f.FechaCompra, concat("₡",Monto)as 'Monto',l.Nombre as 'Lote',f.IdCliente,f.Observacion,f.IdCliente,f.IdLote 
-    from cifa13 f,selo09 l,cicl11 cl, uspr01 p
-    where f.IdLote = l.IdLote and
-    f.IdCliente = cl.IdCliente and
-    cl.IdPersona = p.IdPersona AND
-    f.FechaCompra BETWEEN f1 AND f2
-    order by f.IdFac desc;   
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `TotalInsumoXIDTC` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `TotalInsumoXIDTC` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `TotalInsumoXIDTC`(in id int)
-BEGIN
-    declare total float default 0.0;
-    
-    select sum(f.Total) into total
-    from intl29 f
-    where f.IdTC = id
-    group by f.IdTC;
-    
-    select total AS 'Inver';
     END */$$
 DELIMITER ;
 
@@ -1631,6 +1625,44 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `todasVentas` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `todasVentas` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `todasVentas`(in f1 date, in f2 date)
+BEGIN
+    
+    select f.IdFac,p.Nombre as 'Cliente',f.FechaCompra, concat("₡",Monto)as 'Monto',l.Nombre as 'Lote',f.IdCliente,f.Observacion,f.IdCliente,f.IdLote 
+    from cifa13 f,selo09 l,cicl11 cl, uspr01 p
+    where f.IdLote = l.IdLote and
+    f.IdCliente = cl.IdCliente and
+    cl.IdPersona = p.IdPersona AND
+    f.FechaCompra BETWEEN f1 AND f2
+    order by f.IdFac desc;   
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `TotalInsumoXIDTC` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `TotalInsumoXIDTC` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `TotalInsumoXIDTC`(in id int)
+BEGIN
+    declare total float default 0.0;
+    
+    select sum(f.Total) into total
+    from intl29 f
+    where f.IdTC = id
+    group by f.IdTC;
+    
+    select total AS 'Inver';
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `TotalNomina` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `TotalNomina` */;
@@ -1685,6 +1717,37 @@ BEGIN
 	    GROUP BY IdLote;
     
     end if;
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `verifi` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `verifi` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `verifi`(in username varchar(100),in pass varchar(255))
+BEGIN
+    
+    DECLARE n VARCHAR(100);
+    declare rol int;
+    
+    SELECT u.Nombre,u.Rol INTO n,rol
+    FROM sgus05 u
+    WHERE u.userName = username
+    AND u.pass = pass;     
+    
+    IF n <> "" THEN
+    
+    SELECT 'MATCH' AS 'Respuesta',rol as 'Rol',n as 'Nombre';
+    
+    ELSE
+    
+    SELECT 'NO_MATCH' AS 'Respuesta';
+    
+    
+    END IF;
+    
     END */$$
 DELIMITER ;
 

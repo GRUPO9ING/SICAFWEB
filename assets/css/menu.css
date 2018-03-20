@@ -1,3 +1,21 @@
+span.error {
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding: 2px;
+    margin-left: 6px;
+    border: 1px;
+    display: none;
+    position:relative;
+    bottom:5px;
+    right:5px;
+    top:2px;
+    border-radius: 0px 200px 200px 200px;
+    background: rgba(255,0,0,0.6);
+
+}
 
 .aprobado{
  color: #2eaf1d;
@@ -184,7 +202,7 @@ table{
 }
 .nav-side-menu ul,
 .nav-side-menu li {
-  letter-spacing: 1px;  
+  letter-spacing: 1px;
     list-style: none;
     padding: 0px;
     margin: 0px;

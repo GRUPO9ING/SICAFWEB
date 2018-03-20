@@ -1,59 +1,70 @@
 $(document).on("ready", function(){
   listar();
   /*  */
-    $("#frm-tipoInsumo").on("submit", function(e){
-           e.preventDefault();
-           //Guardamos la referencia al formulario
-           var $f = $(this);
-           //Comprobamos si el semaforo esta en verde (1)
-           if ($f.data('locked') != undefined && !$f.data('locked')){
-            //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
-                             $.ajax({
-                                type: 'POST',
-                                url:"?c=TipoInsumo&a=Guardar",
-                                data: {
-                                    'IdTI': $("#id").val(),
-                                    'Nombre':  $("#Tipo").val(),
-                                    },
-                                beforeSend: function(){
-                                    $f.data('locked', true);  // (2)
-                                },
-                                success: function(result){
-                                  $('#mGuardar').modal('hide');
-                                  if(result == true)
-                                  {
-                                    swal({
-                                        type: 'success',
-                                        title: 'Operación ejecutada exitosamente',
-                                        showConfirmButton: false,
-                                        timer: 1000
-                                      });
+    validator = $("#frm-tipoInsumo").validate();
+    $.validator.addMethod("letras_espacios", function (value, element) {
+    return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+  }, "No se permiten caracteres especiales o numeros");
 
-                                   listar();
-                                  }
-                                  else
-                                  {
-                                    swal({
-                                        type: 'error',
-                                        title: 'Error',
-                                        showConfirmButton: false,
-                                        timer: 1000
-                                      });
 
-                                  }
-                               },
-                               complete: function(){ $f.data('locked', false);  // (3)
-                              }
-                          });
-                        }
-                        else
-                        {
-                         //Bloqueado!!!
-                         //alert("locked");
-                        }
 
+   $("#GuardartipoInsumo").on("click", function () {
+
+    validatorTipoInsumo = $("#frm-tipoInsumo").validate();
+    validatorTipoInsumo.destroy();
+    validatorTipoInsumo = $("#frm-tipoInsumo").validate({
+        event: "blur",
+        errorElement: "span",
+        rules: {
+          tipoInsumo: {required: true, letras_espacios: true, rangelength: [1, 30]}
+
+        },
+        messages: {
+          tipoInsumo:{required: "Requerido",letras_espacios:"No se permiten caracteres especiales o numeros" ,rangelength: "Máximo {1} caracteres"},
+        },
+        submitHandler: function (form)
+        {
+              $.ajax({
+                 type: 'POST',
+                 url:"?c=TipoInsumo&a=Guardar",
+                 data: {
+                     'IdTI': $("#id").val(),
+                     'Nombre':  $("#Tipo").val()
+                  },
+                  success: function(result){
+                   if(result == true)
+                   {
+                     swal({
+                         type: 'success',
+                         title: 'Operación ejecutada exitosamente',
+                         showConfirmButton: false,
+                         timer: 1000
+                       });
+
+                    listar();
+                   }
+                   else
+                   {
+                     swal({
+                         type: 'error',
+                         title: 'Error',
+                         showConfirmButton: false,
+                         timer: 1000
+                       });
+
+                   }
+                },
+                complete: function(){
+                   $('.mensajes').html('');
+               }
+           });
+        }
     });
-/**/
+});
+
+
+
+
 });
 
 function __(id) {
@@ -84,7 +95,7 @@ $("#tabla").on("click",".btnTipo", function(){
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, Vuelelo!',
+                    confirmButtonText: 'Si, Elimínelo!',
                     cancelButtonText: 'No, Cancelar!',
                     confirmButtonClass: 'btn btn-success',
                     cancelButtonClass: 'btn btn-danger',
@@ -119,7 +130,7 @@ $("#tabla").on("click",".btnTipo", function(){
                       swal({
                           type: 'error',
                           title: 'Operacion Cancelada',
-                          text : 'Su registro esta a salvo ☺',
+                          text : 'Su registro no se ha eliminado',
                           showConfirmButton: false,
                           timer: 1500
                         });

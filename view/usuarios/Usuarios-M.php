@@ -13,7 +13,7 @@
       </center>
         </div>
       <div class="modal-body">
-              <form id="frm-usuario" data-locked="false">
+              <form id="frm-usuario" method="post">
                 <input type="hidden" id="id" name="IdUR" />
 
                       <div class="row">
@@ -21,7 +21,7 @@
                             <div class="form-group">
                               <label class="col col-md-4">Nombre</label>
                               <div class="col col-md-8">
-                              <input type="text" class="form-control" name="Nombre" id="nom"  placeholder="Ingrese el nombre"  required>
+                              <input type="text" class="form-control" name="nom" id="nom"  placeholder="Ingrese el nombre">
                               </div>
                             </div>
                           </div>
@@ -34,7 +34,7 @@
                               <div class="form-group">
                                 <label class="col col-md-4">Primer apellido</label>
                                 <div class="col col-md-8">
-                                <input type="text" class="form-control" name="Nombre" id="ap1"  placeholder="primer apellido"  required>
+                                <input type="text" class="form-control" name="ap1" id="ap1"  placeholder="primer apellido">
                                 </div>
                               </div>
                             </div>
@@ -47,7 +47,7 @@
                                <div class="form-group">
                                  <label class="col col-md-4">Segundo apellido</label>
                                  <div class="col col-md-8">
-                                 <input type="text" class="form-control" name="Nombre" id="ap2"  placeholder="segundo apellido"  required>
+                                 <input type="text" class="form-control" name="ap2" id="ap2"  placeholder="segundo apellido">
                                  </div>
                                </div>
                              </div>
@@ -60,7 +60,7 @@
                                  <div class="form-group">
                                    <label class="col col-md-4">Nombre de usuario</label>
                                    <div class="col col-md-8">
-                                   <input type="text" class="form-control" name="Nombre" id="user"  placeholder="username"  required>
+                                   <input type="text" class="form-control" name="user" id="user"  placeholder="username">
                                    </div>
                                  </div>
                                </div>
@@ -73,7 +73,7 @@
                                    <div class="form-group">
                                      <label class="col col-md-4">Contraseña</label>
                                      <div class="col col-md-8">
-                                     <input type="password" class="form-control" name="Nombre" id="pass"  placeholder="ingrese una contraseña"  required>
+                                     <input type="password" class="form-control" name="pw1" id="pass"  placeholder="ingrese una contraseña">
                                      </div>
                                    </div>
                                  </div>
@@ -86,7 +86,7 @@
                                      <div class="form-group">
                                        <label class="col col-md-4">Confirmar Contraseña</label>
                                        <div class="col col-md-8">
-                                       <input type="password" class="form-control" name="Nombre" id="pass2"  placeholder="Confirmar"  required>
+                                       <input type="password" class="form-control" name="pw2" id="pass2"  placeholder="Confirmar">
                                        </div>
                                      </div>
                                    </div>
