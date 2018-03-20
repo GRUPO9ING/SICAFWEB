@@ -1,3 +1,4 @@
+
 .aprobado{
  color: #2eaf1d;
  letter-spacing: 1px;
@@ -183,6 +184,7 @@ table{
 }
 .nav-side-menu ul,
 .nav-side-menu li {
+  letter-spacing: 1px;  
     list-style: none;
     padding: 0px;
     margin: 0px;
