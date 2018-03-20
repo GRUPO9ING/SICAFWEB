@@ -23,7 +23,7 @@ class Login
 	try
 	{
 		$stm = $this->pdo
-							->prepare("SELECT *FROM sgus05 WHERE userName = ? AND pass = ?");
+							->prepare("CALL verifi(?,?)");
 		$stm->execute(array($log->username,$log->pass));
 		return $stm->fetchAll(PDO::FETCH_OBJ);
 	} catch (Exception $e)

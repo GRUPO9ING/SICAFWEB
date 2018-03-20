@@ -117,6 +117,13 @@
                                                  </a>
                                              </li>
                                       </ul>
+                               <?php if ($_SESSION['rol'] == 1){
+                                 echo '<li>
+                                     <a href="?c=Usuarios">
+                                       <i class="fa fa-user fa-lg"></i> Gestion de usuario
+                                     </a>
+                                 </li>';
+                               } ?>
 
                               <li>
                                   <a href="#">

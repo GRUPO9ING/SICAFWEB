@@ -5,15 +5,13 @@ $(document).on("ready", function(){
       url:"?c=Login&a=Autenticar",
       data: {
         'nombre': $('#email').val(),
-        'pass': $('#pwd').val()},
+        'pass': $('#pwd').val()
+      },
         success: function(result){
                   var res = JSON.parse(result);
-                  console.log(result);
-                  var t = Object.keys(result).length;
-                   if(t > 11)
-                   {
-                         if(res.data[0].userName == $('#email').val() && res.data[0].pass == $('#pwd').val()){
-                            swal({
+
+                  if(res.data[0].Respuesta == 'MATCH')
+                   {  swal({
                                   title: 'Espere',
                                   text: 'Iniciando sesión',
                                   timer: 1000,
@@ -24,6 +22,15 @@ $(document).on("ready", function(){
                                   function () {},
                                   // handling the promise rejection
                                   function (dismiss) {
+
+                                    $.ajax({
+                                      type:'POST',
+                                      url:'?c=Login&a=CreaSesion',
+                                      data:{'user':res.data[0].Nombre,'ROL':res.data[0].Rol},
+                                      success:function(result){
+                                      console.log(result);
+                                      }
+                                    });
                                     location.href ="?c=colaborador";
                                     if (dismiss === 'timer')
                                     {
@@ -31,16 +38,7 @@ $(document).on("ready", function(){
                                     }
                                   }
                                 )
-                                $.ajax({
-                                  type:'POST',
-                                  url:'?c=Login&a=CreaSesion',
-                                  data:{'user':res.data[0].username},
-                                  success:function(result){
-                                  console.log(result);
-                                  }
-                                });
 
-                          }
                    }
                     else {
                       swal({

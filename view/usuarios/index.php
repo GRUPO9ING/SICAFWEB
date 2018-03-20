@@ -6,9 +6,10 @@
     </div>
 
     <div class="col col-sm-8 col-md-8">
-       <?php include('view/usuarios/usuarioRoles.php'); ?>
+      <?php include('view/usuarios/Usuarios.php');
+      include('view/usuarios/Usuarios-M.php');
+      ?>
     </div>
   </div>
-<script src="assets/js/ajax_usuarioRoles.js"></script>
-<?php include('view/usuarios/Roles-m.php'); ?>
+  <script src="assets/js/ajax_usuario.js" charset="utf-8"></script>
 <?php include('view/overall/footer.php'); ?>
