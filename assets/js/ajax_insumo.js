@@ -2,7 +2,6 @@
 $(document).on("ready", function(){
   listar();
 
-
     $("#frm-insumo").on("submit", function(e){
            e.preventDefault();
            //Guardamos la referencia al formulario

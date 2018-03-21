@@ -11,7 +11,7 @@
         </center>
       </div>
       <div class="modal-body">
-        <form id="frm-lote" data-locked="false" enctype="multipart/form-data">
+        <form id="frm-lote" method="post">
                     <input type="hidden" name="IdLote" id="IdLote"/>
 
                       <div class="row">
@@ -30,7 +30,7 @@
                               <div class="form-group">
                                 <label class="col col-md-3">Área</label>
                                 <div class="col col-md-9">
-                                <input type="text" class="form-control" id="AreaL" name="AreaL" placeholder="Ingrese el Área del lote" data-validacion-tipo="requerido|min:5">
+                                <input type="text" class="form-control" id="AreaL" name="AreaL" placeholder="M²" data-validacion-tipo="requerido|min:5">
                               </div>
                               </div>
                             </div>
@@ -42,8 +42,7 @@
                                   <label class="col col-md-3">Estado</label>
                                   <div class="col col-md-9">
 
-                                    <select name="Estado" id="Estado" class="form-control">
-                                        <option value="s">Seleccione</option>
+                                    <select id="Estado" name="Estado" class="selectpicker" data-live-search="true" title="Seleccione uno">
                                         <option value="Habilitado">Habilitado</option>
                                         <option value="Deshabilitado">Deshabilitado</option>
                                     </select>
@@ -67,7 +66,7 @@
                                                   </div>
                                                   <br>
       <div class="modal-footer">
-            <button class="btn btn-success" >Guardar</button>
+            <button class="btn btn-success" id="Enviar">Guardar</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
     </form>

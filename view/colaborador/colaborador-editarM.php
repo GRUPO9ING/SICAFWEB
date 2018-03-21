@@ -13,7 +13,7 @@
       </center>
         </div>
       <div class="modal-body">
-              <form id="frm-colaborador" data-locked="false">
+              <form id="frm-colaborador" method="post">
                 <input type="hidden" id="IdCol" name="IdCol" value=0 />
                 <input type="hidden" id="id" name="IdPersona" />
                 <input type="hidden" id="idP"/>
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                   <label class="col col-md-3">Apellido 1</label>
                                   <div class="col col-md-9">
-                                  <input type="text" class="form-control" id="ap1" name="Apellido1" placeholder="Ingrese primer apellido"  required>
+                                  <input type="text" class="form-control" id="ap1" name="ap1" placeholder="Ingrese primer apellido"  required>
                                 </div>
                                 </div>
                               </div>
@@ -62,7 +62,7 @@
                                   <div class="form-group">
                                     <label class="col col-md-3">Apellido 2</label>
                                     <div class="col col-md-9">
-                                    <input type="text" class="form-control" id="ap2" name="Apellido2" placeholder="Ingrese segundo apellido"  required>
+                                    <input type="text" class="form-control" id="ap2" name="ap2" placeholder="Ingrese segundo apellido"  required>
                                   </div>
                                   </div>
                                 </div>
@@ -76,7 +76,7 @@
                                   <div class="form-group">
                                     <label class="col col-md-3">Telefono</label>
                                       <div class="col col-md-9">
-                                      <input type="text" class="form-control" id="tel" name="Telefono" placeholder="Ingrese número de teléfono"  required>
+                                      <input type="text" class="form-control" id="tel" name="tel" placeholder="Ingrese número de teléfono"  required>
                                     </div>
                                   </div>
                                 </div>
@@ -89,7 +89,7 @@
                                   <div class="form-group">
                                     <label class="col col-md-3">Direccion</label>
                                        <div class="col col-md-9">
-                                       <input type="text" class="form-control" id="dir" name="Direccion" placeholder="Ingrese dirección" required>
+                                       <input type="text" class="form-control" id="dir" name="dir" placeholder="Ingrese dirección" required>
                                     </div>
                               </div>
                           </div>
@@ -102,7 +102,7 @@
                                                             <div class="form-group">
                                                               <label class="col col-md-3">Correo</label>
                                                                  <div class="col col-md-9">
-                                                                 <input type="email" id="cor" class="form-control" name="Correo" placeholder="Ingrese Correo" required>
+                                                                 <input type="email" id="cor" class="form-control" name="cor" placeholder="Ingrese Correo" required>
                                                               </div>
                                                         </div>
                                                     </div>
@@ -114,9 +114,8 @@
                    <div class="form-group">
                      <label class="col col-md-3">Tipo</label>
                      <div class="col col-md-9">
-                     <select class="form-control" name="IdTC" id="IdTC">
-                       <option> SELECCIONE</option>
-                       <?php foreach($this->model->Obtenercbo() as $r): ?>
+                       <select id="IdTC" name="IdTC" class="selectpicker" data-live-search="true" title="Seleccione uno">
+                          <?php foreach($this->model->Obtenercbo() as $r): ?>
                                <option value="<?php echo $r->IdTipoColaborador?>"> <?php echo $r->Tipo;?> </option>
                        <?php endforeach; ?>
                      </select>

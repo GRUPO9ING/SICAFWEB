@@ -2,6 +2,7 @@ $(document).on("ready", function(){
  porHora();
  validaLong();
   $("#jus").val('');
+  tcg();
 
   QuitarInsumo();
   $('#creatc').on('click',function(){
@@ -51,7 +52,7 @@ $("#invert").val(total);
       },
       success:function(result)
       {
-        $("#ColDiv").after("<a onclick='hola("+d[0].innerText+","+d[4].innerText+");' id="+d[0].innerText+" class='btn btn-primary' value="+d[0].innerText+"><span class='fa fa-trash'> "+d[2].innerText+"</span> </a>");
+        $("#ColDiv").before("<a onclick='hola("+d[0].innerText+","+d[4].innerText+");' id="+d[0].innerText+" class='btn btn-primary' value="+d[0].innerText+"><span class='fa fa-trash'> "+d[2].innerText+"</span> </a>");
         $("#COLS").modal('hide');
       }
     })
@@ -155,59 +156,6 @@ function porHora(){
 
   });
 
-          $("#frm-tc").on("submit", function(e){
-                 e.preventDefault();
-                 //Guardamos la referencia al formulario
-                 var $f = $(this);
-                 //Comprobamos si el semaforo esta en verde (1)
-                 if ($f.data('locked') != undefined && !$f.data('locked')){
-                  //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
-                                   $.ajax({
-                                     type: 'POST',
-                                     url:"?c=Tc&a=InsertarTRC",
-                                     data: {
-                                      'IdLote': $('#IdLO').val(),
-                                      'IDTC': $("#idTC").val(),
-                                      'Fecha': $("#Fechatc").val(),
-                                      'Horas': $("#Hr").val(),
-                                      'Jus': $("#jus").val(),
-                                      'in':$("#invert").val()
-                                      },
-                                      beforeSend: function(){
-                                          $f.data('locked', true);  // (2)
-                                      },
-                                      success: function(result){
-                                        if(result = true)
-                                        {
-                                          listarTRC();
-                                          $('#TC').modal('hide');
-                                          swal({
-                                              type: 'success',
-                                              title: 'Guardado exitosamente',
-                                              showConfirmButton: false,
-                                              timer: 1500
-                                            });
-                                      }
-                                      else {
-                                        swal({
-                                            type: 'error',
-                                            title: 'Sucedio algo inesperado',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                          });
-                                      }
-                                     },
-                                     complete: function(){ $f.data('locked', false);  // (3)
-                                    }
-                                });
-                              }
-                              else
-                              {
-                               //Bloqueado!!!
-                               //alert("locked");
-                              }
-
-          });
 
 
           $("#aaa").on("click",function(){
@@ -215,6 +163,102 @@ function porHora(){
           });
 });
 
+
+validator = $("#frm-Nomina").validate();
+$.validator.addMethod("fechas", function (value, element) {
+return this.optional(element) || /^[0-9/-]+$/.test(value);
+}, "no se permiten letras");
+
+validator = $("#frm-Nomina").validate();
+$.validator.addMethod("solon", function (value, element) {
+return this.optional(element) || /^[0-9]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+
+function tcg(){
+
+  $("#Enviar").on('click',function(){
+  validatorTC = $("#frm-tc").validate();
+  validatorTC.destroy();
+  validatorTC = $("#frm-tc").validate({
+      event: "blur",
+      errorElement: "span",
+      rules: {
+        IdLO :{required:1},
+        FT: {required: true, fechas: true, rangelength: [10, 12]},
+        Hr: {required: true, solon:true, rangelength: [1, 2], max:24, min:1}
+      },
+      messages: {
+        IdLO:{required:'Elija uno'},
+        FT:{required: "Requerido",fechas:"Ingrese una fecha valida" ,rangelength: "Máximo {1} caracteres"},
+        Hr: {required: 'Requerido',solon:'Solo se admite numeros', rangelength: [1,2], max:'Deben ser menos horas',min:'Debe ser al menos 1 hora'}
+      },
+      submitHandler: function (form)
+      {
+      var nFilas = $("#TablaIns").children.length;;
+      if($("#ff").find('a').length > 0)
+        {
+          console.log(nFilas);
+          if(nFilas > 1)
+          {
+            $.ajax({
+              type: 'POST',
+              url:"?c=Tc&a=InsertarTRC",
+              data: {
+               'IdLote': $('#IdLO').val(),
+               'IDTC': $("#idTC").val(),
+               'Fecha': $("#Fechatc").val(),
+               'Horas': $("#Hr").val(),
+               'Jus': $("#jus").val(),
+               'in':$("#invert").val()
+               },
+               success: function(result){
+                 if(result = true)
+                 {
+                   listarTRC();
+                   $('#TC').modal('hide');
+                   swal({
+                       type: 'success',
+                       title: 'Guardado exitosamente',
+                       showConfirmButton: false,
+                       timer: 1500
+                     });
+               }
+               else {
+                 swal({
+                     type: 'error',
+                     title: 'Sucedio algo inesperado',
+                     showConfirmButton: false,
+                     timer: 1500
+                   });
+               }
+              },
+              complete: function(){
+                   $('.mensajes').html('');
+             }
+         });
+       }else {
+         swal({
+             type: 'error',
+             title: 'Almenos selecciona un insumo',
+             showConfirmButton: false,
+             timer: 1500
+           });
+       }
+
+        }else {
+          swal({
+              type: 'error',
+              title: 'Almenos selecciona un colaborador',
+              showConfirmButton: false,
+              timer: 1500
+            });
+        }
+
+      }
+    })
+  });
+}
 
 function __(id) {
   return document.getElementById(id);

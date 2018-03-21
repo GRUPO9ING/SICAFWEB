@@ -12,10 +12,10 @@
       </center>
         </div>
       <div class="modal-body">
-        <form id="frm-tc" data-locked="false">
+        <form id="frm-tc" method="post">
             <input type="text" id="idTC" class="hidden">
 
-                  <div class="row">
+                  <div class="row" id="ff">
                       <label class="col col-md-3 col-sm-3" id="ColDiv">Colaboradores :</label>
                       <div class="col col-md-3 col-sm-3" style="postion:relative; top:-5px;">
                       <button type="button" id="aaa" class="btn btn-success" data-toggle="modal" data-target="#COLS"> <span class="fa fa-plus"></span> </button>
@@ -28,7 +28,7 @@
 
                       <label class="col col-md-3 col-sm-3 col-lg-3">Lote :</label>
                     <div class="col col-md-4 col-sm-4 col-lg-4">
-                    <select id="IdLO" class="selectpicker" data-live-search="true" title="Seleccione uno">
+                    <select id="IdLO" name="IdLO" class="selectpicker" data-live-search="true" title="Seleccione uno">
                         <?php foreach($this->modelL->LlenarLotes() as $r): ?>
                                 <option value="<?php echo $r->IdLote; ?>"> <?php echo $r->Nombre;?> </option>
                         <?php endforeach; ?>
@@ -37,7 +37,7 @@
                        <div class="form-group">
                           <label class="col col-md-1 col-sm-2 col-lg-1">Horas</label>
                           <div class="col col-md-3 col-sm-3 col-md-3">
-                          <input type="text" class="form-control" id="Hr" placeholder="Horas" title="Cantidad de horas para realizar el trabajo">
+                          <input type="text" class="form-control" name="Hr" id="Hr" placeholder="Horas" >
                         </div>
                         </div>
 
@@ -52,7 +52,7 @@
                                                 <label class="col col-md-3">Fecha de trabajo</label>
                                                 <div class="col col-md-3">
                                                   <div class="input-group date fj-date">
-                                                  <input type="text"  class="col col-md-12 fecha" placeholder="Fecha del trabajo" name="Fechatc" id="Fechatc" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                                  <input type="text"  class="col col-md-12 fecha" placeholder="Fecha del trabajo" name="FT" id="Fechatc" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                                   </div>
                                                 </div>
                                               </div>
@@ -61,7 +61,7 @@
                                                  <div class="form-group">
                                                       <label class="col col-md-2 col-sm-2 col-lg-2">¿Que se realizo?</label>
                                                       <div class="col col-md-3 col-sm-3 col-md-3">
-                                                      <textarea style="resize:none" class="form-control" id="jus" placeholder="La acción que se realizo" title="La acción que se realizo">
+                                                      <textarea style="resize:none" class="form-control" name="jus" id="jus" placeholder="La acción que se realizo" title="La acción que se realizo">
                                                       </textarea>
                                                       </div>
                                                   </div>

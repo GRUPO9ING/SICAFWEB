@@ -1,6 +1,6 @@
 $(document).on("ready", function(){
   listar();
-
+  guardar();
   $("#frm-lote").on("submit", function(e){
          e.preventDefault();
          //Guardamos la referencia al formulario
@@ -59,6 +59,88 @@ $(document).on("ready", function(){
 
 });
 
+
+validator = $("#frm-lote").validate();
+$.validator.addMethod("fechas", function (value, element) {
+return this.optional(element) || /^[0-9/-]+$/.test(value);
+}, "no se permiten letras");
+
+validator = $("#frm-lote").validate();
+$.validator.addMethod("solon", function (value, element) {
+return this.optional(element) || /^[0-9]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+validator = $("#frm-lote").validate();
+$.validator.addMethod("letras_espacios", function (value, element) {
+return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+
+function guardar(){
+
+  $("#Enviar").on('click',function(){
+  validatorlote = $("#frm-lote").validate();
+  validatorlote.destroy();
+  validatorlote = $("#frm-lote").validate({
+      event: "blur",
+      errorElement: "span",
+      rules: {
+        Nombre :{required:true,letras_espacios:true, rangelength:[1,30]},
+        AreaL: {required: true, solon: true, rangelength: [1, 4], min:1},
+        Estado: {required:1},
+        Produccion: {required: true, letras_espacios:true, rangelength: [1, 20]}
+      },
+      messages: {
+        Nombre :{required:'Debe tener un nombre',letras_espacios:'Caracteres especiales', rangelength:"Máximo {1} caracteres"},
+        AreaL: {required: 'Debe tener una medida', solon: 'Solo valores numericos', rangelength: "Máximo {1} caracteres", min:'Minimo un metro cuadrado'},
+        Estado: {required:'Debe tener un estado'},
+        Produccion: {required:'Requerido' , letras_espacios:'No permite caracteres especiales', rangelength: "Máximo {1} caracteres"}
+      },
+      submitHandler: function (form)
+      {
+        $.ajax({
+          type: 'POST',
+          url:"?c=Lote&a=Guardar",
+          data: {
+         'IdLote': $('#IdLote').val(),
+         'Nombre': $('#Nombre').val(),
+         'AreaL': $('#AreaL').val(),
+         'Estado': $('#Estado').val(),
+         'Produccion': $('#Produccion').val()
+            },
+           success: function(result){
+             $('#mGuardar').modal('hide');
+             if(result == true)
+             {
+               swal({
+                   type: 'success',
+                   title: 'Operación ejecutada exitosamente',
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+
+              listar();
+             }
+             else
+             {
+               swal({
+                   type: 'error',
+                   title: 'Error',
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+
+             }
+          },
+          complete: function(){
+            $('.mensajes').html('');
+          }
+       });
+      }
+    })
+  });
+
+}
 function __(id) {
   return document.getElementById(id);
 }

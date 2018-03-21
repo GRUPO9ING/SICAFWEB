@@ -26,9 +26,9 @@ return this.optional(element) || /^[0-9/-]+$/.test(value);
 
 function generarNomina(){
   $("#Enviar").on('click',function(){
-  validatorTipoInsumo = $("#frm-Nomina").validate();
-  validatorTipoInsumo.destroy();
-  validatorTipoInsumo = $("#frm-Nomina").validate({
+  validatorNomina = $("#frm-Nomina").validate();
+  validatorNomina.destroy();
+  validatorNomina = $("#frm-Nomina").validate({
       event: "blur",
       errorElement: "span",
       rules: {
@@ -42,7 +42,9 @@ function generarNomina(){
 
       },
       submitHandler: function (form)
-      {                   $.ajax({
+      {
+
+        $.ajax({
                             type: 'POST',
                             url:"?c=Nomina&a=Generar",
                             data: {
