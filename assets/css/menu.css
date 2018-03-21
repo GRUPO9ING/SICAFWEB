@@ -4,18 +4,20 @@ span.error {
     text-align: center;
     position: fixed;
     z-index: 1;
-    padding: 2px;
+    padding: 2px ;
     margin-left: 6px;
-    border: 1px;
+    border: 0.5px solid black;
     display: none;
     position:relative;
     bottom:5px;
     right:5px;
     top:2px;
     border-radius: 0px 200px 200px 200px;
-    background: rgba(255,0,0,0.6);
+    background:#ffbda5  ;
+    color:black;
 
 }
+
 
 .aprobado{
  color: #2eaf1d;

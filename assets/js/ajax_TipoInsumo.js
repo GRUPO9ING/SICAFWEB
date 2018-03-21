@@ -15,6 +15,7 @@ $(document).on("ready", function(){
     validatorTipoInsumo = $("#frm-tipoInsumo").validate({
         event: "blur",
         errorElement: "span",
+        
         rules: {
           tipoInsumo: {required: true, letras_espacios: true, rangelength: [1, 30]}
 

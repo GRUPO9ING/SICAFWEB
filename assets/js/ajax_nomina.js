@@ -11,65 +11,79 @@ $(document).on("ready", function(){
   consl();
   listar();
   Planilla();
-  $("#frm-Nomina").on("submit", function(e){
-         e.preventDefault();
-         //Guardamos la referencia al formulario
-         var $f = $(this);
-         //Comprobamos si el semaforo esta en verde (1)
-         if ($f.data('locked') != undefined && !$f.data('locked')){
-          //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
-
-                           $.ajax({
-                              type: 'POST',
-                              url:"?c=Nomina&a=Generar",
-                              data: {
-                                  'FechaInicio': $("#FI").val(),
-                                  'FechaFin': $("#FF").val(),
-                                  },
-                              beforeSend: function(){
-                                  $f.data('locked', true);  // (2)
-                              },
-                              success: function(result)
-                              {
-                                $('#modalNomina').modal('hide');
-                                if(result == true)
-                                {
-                                  swal({
-                                      type: 'success',
-                                      title: 'Operación ejecutada exitosamente',
-                                      showConfirmButton: false,
-                                      timer: 1500
-                                    });
-
-                                 listar();
-                                }
-                                else
-                                {
-                                  console.log(result)
-                                  swal({
-                                      type: 'error',
-                                      title: 'Error',
-                                      showConfirmButton: false,
-                                      timer: 1500
-                                    });
-                                }
-                             },
-                             complete: function(){ $f.data('locked', false);  // (3)
-                            }
-                        });
-                      }
-                      else
-                      {
-                       //Bloqueado!!!
-                       //alert("locked");
-                      }
-
-  });
-
+  generarNomina();
 });
 
 function __(id) {
   return document.getElementById(id);
+}
+
+validator = $("#frm-Nomina").validate();
+$.validator.addMethod("fechas", function (value, element) {
+return this.optional(element) || /^[0-9/-]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+
+function generarNomina(){
+  $("#Enviar").on('click',function(){
+  validatorTipoInsumo = $("#frm-Nomina").validate();
+  validatorTipoInsumo.destroy();
+  validatorTipoInsumo = $("#frm-Nomina").validate({
+      event: "blur",
+      errorElement: "span",
+      rules: {
+        FF: {required: true, fechas: true, rangelength: [10, 12]},
+        FI: {required: true, fechas: true, rangelength: [10, 12]}
+
+      },
+      messages: {
+        FI:{required: "Requerido",fechas:"Ingrese una fecha valida" ,rangelength: "Máximo {1} caracteres"},
+        FF:{required: "Requerido",fechas:"Ingrese una fecha valida" ,rangelength: "Máximo {1} caracteres"}
+
+      },
+      submitHandler: function (form)
+      {                   $.ajax({
+                            type: 'POST',
+                            url:"?c=Nomina&a=Generar",
+                            data: {
+                                'FechaInicio': $("#FI").val(),
+                                'FechaFin': $("#FF").val(),
+                                },
+                            beforeSend: function(){
+                                $f.data('locked', true);  // (2)
+                            },
+                            success: function(result)
+                            {
+                              $('#modalNomina').modal('hide');
+                              if(result == true)
+                              {
+                                swal({
+                                    type: 'success',
+                                    title: 'Operación ejecutada exitosamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                  });
+
+                               listar();
+                              }
+                              else
+                              {
+                                console.log(result)
+                                swal({
+                                    type: 'error',
+                                    title: 'Error',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                  });
+                              }
+                           },
+                           complete: function(){
+                             $('.mensajes').html('');
+                          }
+                      });
+          }
+       })
+    });
 }
 
 
