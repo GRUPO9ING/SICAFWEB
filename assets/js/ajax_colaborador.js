@@ -5,67 +5,9 @@ $(document).on("ready", function(){
        ColLote();
        /**/
        guardarCol();
+       //GuardarHE();
        /**/
-
-/**/
-$("#frm-horas").on("submit", function(e){
-       e.preventDefault();
-       //Guardamos la referencia al formulario
-       var $f = $(this);
-       //Comprobamos si el semaforo esta en verde (1)
-       if ($f.data('locked') != undefined && !$f.data('locked')){
-        //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
-
-                         $.ajax({
-                            type: 'POST',
-                            url:"?c=Colaborador&a=NuevaHE",
-                            data: {
-                                'id': $("#idHe").val(),
-                                'cant': $("#cHoas").val(),
-                                'idCol': $("#IdTC").val(),
-                                'fecha':  $("#FF").val()
-                                },
-                            beforeSend: function(){
-                                $f.data('locked', true);  // (2)
-                            },
-                            success: function(result)
-                            {
-                              $('#mHoras').modal('hide');
-                              if(result == true)
-                              {
-                                swal({
-                                    type: 'success',
-                                    title: 'Operación ejecutada exitosamente',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                  });
-
-                               listarHE();
-                              }
-                              else
-                              {
-                                console.log(result)
-                                swal({
-                                    type: 'error',
-                                    title: 'No se encontro nomina en el rango de fecha',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                  });
-
-                              }
-                           },
-                           complete: function(){ $f.data('locked', false);  // (3)
-                          }
-                      });
-                    }
-                    else
-                    {
-                     //Bloqueado!!!
-                     //alert("locked");
-                    }
-
-});
-
+       /**/
 });
 /**/
 
@@ -74,35 +16,40 @@ function __(id) {
   return document.getElementById(id);
 }
 
-validator = $("#frm-colaborador").validate();
-$.validator.addMethod("fechas", function (value, element) {
-return this.optional(element) || /^[0-9/-]+$/.test(value);
-}, "no se permiten letras");
-
-validator = $("#frm-colaborador").validate();
-$.validator.addMethod("ced", function (value, element) {
-return this.optional(element) || /^[a-z0-9-]+$/.test(value);
-}, "No se permiten caracteres especiales o numeros");
-
-validator = $("#frm-colaborador").validate();
-$.validator.addMethod("letras_espacios", function (value, element) {
-return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
-}, "No se permiten caracteres especiales o numeros");
-
-validator = $("#frm-colaborador").validate();
-$.validator.addMethod("todos", function (value, element) {
-return this.optional(element) || /^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
-}, "No se permiten caracteres especiales o numeros");
-
-validator = $("#frm-colaborador").validate();
-$.validator.addMethod("num", function (value, element) {
-return this.optional(element) || /^[0-9-]+$/.test(value);
-}, "No se permiten caracteres especiales o numeros");
 
 
 function guardarCol(){
 
     $("#Enviar").on('click',function(){
+
+
+      validator = $("#frm-colaborador").validate();
+      $.validator.addMethod("fechas", function (value, element) {
+      return this.optional(element) || /^[0-9/-]+$/.test(value);
+      }, "no se permiten letras");
+
+      validator = $("#frm-colaborador").validate();
+      $.validator.addMethod("ced", function (value, element) {
+      return this.optional(element) || /^[a-z0-9-]+$/.test(value);
+      }, "No se permiten caracteres especiales o numeros");
+
+      validator = $("#frm-colaborador").validate();
+      $.validator.addMethod("letras_espacios", function (value, element) {
+      return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+      }, "No se permiten caracteres especiales o numeros");
+
+      validator = $("#frm-colaborador").validate();
+      $.validator.addMethod("todos", function (value, element) {
+      return this.optional(element) || /^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+      }, "No se permiten caracteres especiales o numeros");
+
+      validator = $("#frm-colaborador").validate();
+      $.validator.addMethod("num", function (value, element) {
+      return this.optional(element) || /^[0-9-]+$/.test(value);
+      }, "No se permiten caracteres especiales o numeros");
+
+
+
 
     validatorcolaborador = $("#frm-colaborador").validate();
     validatorcolaborador.destroy();

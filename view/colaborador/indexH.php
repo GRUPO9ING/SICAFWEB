@@ -10,4 +10,5 @@
   </div>
 <?php include('horas-m.php'); ?>
 <script src="assets/js/ajax_colaborador.js" charset="utf-8"></script>
+<script src="assets/js/validaH.js" charset="utf-8"></script>
 <?php include('view/overall/footer.php'); ?>

@@ -13,15 +13,14 @@
       </center>
         </div>
       <div class="modal-body">
-              <form id="frm-horas" data-locked="false">
+              <form id="frm-horas" method="post">
             <input type="text" class="hidden" id="idHe">
               <div class="row">
                <div class="col col-md-12">
                    <div class="form-group">
                      <label class="col col-md-3">Colaborador</label>
                      <div class="col col-md-9">
-                     <select class="form-control" name="IdTC" id="IdTC">
-                       <option> SELECCIONE</option>
+                     <select class="selectpicker" data-live-search="true" title="Seleccione uno" name="IdTC" id="IdTC">
                        <?php foreach($this->model->ObcboCol() as $r): ?>
                                <option value="<?php echo $r->IdColaborador?>"> <?php echo $r->Col?> </option>
                        <?php endforeach; ?>
@@ -36,8 +35,8 @@
                  <div class="col col-md-12">
                      <div class="form-group">
                        <label class="col col-md-3">Cantidad de horas</label>
-                       <div class="col col-md-3">
-                       <input class="form-control" type="number" id="cHoas">
+                       <div class="col col-md-5">
+                       <input class="form-control" type="number" id="cHoas" name="cHoas">
                      </div>
                      </div>
                    </div>
@@ -50,7 +49,7 @@
                          <label class="col col-md-3">Fecha Horas</label>
                      <div class="col col-md-9">
                    <div class="input-group">
-                         <input type="text" placeholder="Fecha horas" name="FechaFin" id="FF" class="col col-md-12 fecha" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                         <input type="text" placeholder="Fecha horas" name="FF" id="FF" class="col col-md-12 fecha" style="height:32px;"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                    </div>
                     </div>
                 </div>
