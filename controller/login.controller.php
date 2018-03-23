@@ -30,6 +30,7 @@ class LoginController
     }
 
     public function CreaSesion(){
+      ini_set('session.cookie_lifetime',3600);
       session_start();
       $_SESSION['user'] = $_POST['user'];
       $_SESSION['rol'] = $_POST['ROL'];
