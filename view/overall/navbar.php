@@ -80,16 +80,17 @@
                                           <a href="#"><i class="fa fa-database fa-lg"></i> Insumos <span class="arrow"></span></a>
                                           </li>
                                        <ul class="sub-menu collapse" id="Insumos">
-                                         <li>
-                                             <a href="?c=tipoInsumo">
-                                                 <i class="fa fa-tags fa-lg"></i> Tipo de insumo
-                                             </a>
-                                         </li>
 
                                          <li>
                                              <a href="?c=insumo">
                                                  <i class="fa fa-archive fa-lg"></i> Inventario de insumo
                                              </a>
+                                         </li>
+                                         
+                                         <li>
+                                           <a href="?c=tipoInsumo">
+                                             <i class="fa fa-tags fa-lg"></i> Tipo de insumo
+                                           </a>
                                          </li>
                                   </ul>
 
@@ -104,11 +105,6 @@
                                                </a>
                                            </li>
 
-                                           <li>
-                                               <a href="?c=cliente">
-                                                   <i class="fa fa-users fa-lg"></i> Clientes
-                                               </a>
-                                           </li>
                                     </ul>
                                            <ul class="sub-menu collapse" id="Seguridad">
                                              <li>
@@ -117,13 +113,13 @@
                                                  </a>
                                              </li>
                                       </ul>
-                               <!--<?php if ($_SESSION['rol'] == 1){
+                               <?php if ($_SESSION['rol'] == 1){
                                  echo '<li>
                                      <a href="?c=Usuario">
                                        <i class="fa fa-user fa-lg"></i> Gestion de usuario
                                      </a>
                                  </li>';
-                               } ?>-->
+                               } ?>
 
                               <li>
                                   <a href="?c=login&a=cerrar">

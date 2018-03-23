@@ -17,25 +17,6 @@ class NominaController{
         require_once 'view/planilla/index.php';
     }
 
-    public function Guardar(){
-        $nom = new Persona();
-
-        $nom->IdPersona = $_REQUEST['IdPersona'];
-        $nom->Nombre = $_REQUEST['Nombre'];
-        $nom->Apellido1 = $_REQUEST['Apellido1'];
-        $nom->Apellido2 = $_REQUEST['Apellido2'];
-        $nom->Telefono = $_REQUEST['Telefono'];
-        $nom->Direccion = $_REQUEST['Direccion'];
-        $nom->Correo = $_REQUEST['Correo'];
-         $nom->Cedula = $_REQUEST['Cedula'];
-
-        $nom->IdPersona > 0
-            ? $this->model->Actualizar($per)
-            : $this->model->Registrar($per);
-
-        header('Location: index.php');
-    }
-
 
         public function Generar(){
             $nom = new Nomina();

@@ -40,7 +40,7 @@ function guardarCol(){
 
       validator = $("#frm-colaborador").validate();
       $.validator.addMethod("todos", function (value, element) {
-      return this.optional(element) || /^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+      return this.optional(element) || /^[0-9@a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
       }, "No se permiten caracteres especiales o numeros");
 
       validator = $("#frm-colaborador").validate();
@@ -63,7 +63,7 @@ function guardarCol(){
           ap2 :{required:true,letras_espacios:true, rangelength:[1,30]},
           tel :{required:true,ced:true, rangelength:[8,10]},
           dir :{required:true,letras_espacios:true, rangelength:[1,30]},
-          cor :{required:true,letras_espacios:true, rangelength:[1,30]},
+          cor :{required:true,todos:true, rangelength:[1,30]},
           IdTC :{required:1},
           FechaIngreso: {required: true, fechas: true, rangelength: [8, 10]},
           horas: {required:true, num:true, min:1},
@@ -172,11 +172,13 @@ $("#tablahoras").on("click",".btnAplicar", function(){
   $.ajax({
     type:'POST',
     url:'?c=Colaborador&a=AplicarHE',
-    data:{"idP":d[2].innerText,
+    data:{
+          "idP": d[2].innerText,
           "fecha":d[4].innerText,
           "idCol":d[0].innerText},
           success:function(result){
             if(result = true){
+              console.log(d[2],d[4],d[0]);
                   swal({
                     type: 'success',
                     title: 'Operación ejecutada exitosamente',

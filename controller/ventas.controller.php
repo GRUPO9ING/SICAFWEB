@@ -46,6 +46,12 @@ class VentasController
       exit();
     }
 
+    public function AnularV(){
+      $result= $this->modelV->Anul($_POST['idF']);
+      echo $result;
+      exit();
+    }
+
 
 }
 ?>

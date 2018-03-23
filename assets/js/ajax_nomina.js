@@ -50,11 +50,7 @@ function generarNomina(){
                             data: {
                                 'FechaInicio': $("#FI").val(),
                                 'FechaFin': $("#FF").val(),
-                                },
-                            beforeSend: function(){
-                                $f.data('locked', true);  // (2)
-                            },
-                            success: function(result)
+                                },success: function(result)
                             {
                               $('#modalNomina').modal('hide');
                               if(result == true)

@@ -3,12 +3,12 @@ $(document).on("ready", function(){
   $("#rep").hide();
   $("#vt").hide();
   cambio();
+  anularV();
   reporte();
   vender();
   Limpiar();
   guardar();
   consl();
-  listar();
   $("#Cedula").keyup(function(){
         if( $('#Cedula').val().length > 6){
           console.log("dasdas");
@@ -53,6 +53,7 @@ function cambio(){
     $("#ff").hide();
     $("#vt").show();
     $("#rep").hide();
+    listar();
 
   });
 
@@ -61,6 +62,65 @@ function cambio(){
     $("#ff").hide();
     $("#vt").hide();
     $("#rep").show();
+
+  });
+
+}
+
+function anularV(){
+  $("#tablaVentas").on("click",".btnAnular", function(){
+  d = $(this).parents("tr").find("td");
+
+        swal({
+                  title: '¿Esta seguro que desea anular la factura nº'+d[0].innerText+'?',
+                  text: "No se puede revertir!",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, Vuelelo!',
+                  cancelButtonText: 'No, Cancelar!',
+                  confirmButtonClass: 'btn btn-success',
+                  cancelButtonClass: 'btn btn-danger',
+                  buttonsStyling: false
+                }).then(function () {
+
+                  $.ajax({
+                            type: 'POST',
+                            url:"?c=ventas&a=AnularV",
+                            data: {
+                           'idF': d[0].innerText},
+                            success: function(result){
+
+                              if(result == true){
+                                swal({
+                                    type: 'success',
+                                    title: 'Anulada exitosamente',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                  });
+
+                              }
+
+                            listar();
+                      }});
+
+
+                }, function (dismiss) {
+                  // dismiss can be 'cancel', 'overlay',
+                  // 'close', and 'timer'
+                  if (dismiss === 'cancel') {
+                    swal({
+                        type: 'error',
+                        title: 'Operacion Cancelada',
+                        text : 'Su registro esta a salvo ☺',
+                        showConfirmButton: false,
+                        timer: 700
+                      });
+
+                  }
+                })
+
 
   });
 
@@ -209,6 +269,8 @@ function reporte(){
     //$('.Lotes').remove();
     $( "#Todos" ).empty();
     $( "#Montos" ).empty();
+    $( "#Anulados" ).empty();
+
 
     var idLote = $('#IdLL').val();
 
@@ -228,27 +290,46 @@ function reporte(){
             'FF':$('#FFR').val(),
             'op':idLote
           },success:function(result){
+            console.log(result);
             var res = JSON.parse(result);
             var total  = 0;
+            var anulado = 0;
+            var aa =0;
+            var bb =0;
             var i = 0;
             $('#Todos').append('<h2 class="Titulos"> Lotes </h2>');
             $('#Montos').append('<h2 class="Titulos"> Montos </h2>');
+            $('#Anulados').append('<h2 class="Titulos"> Anulados </h2>');
             while (Object.keys(res.data).length > i) {
               $('#Todos').append('<h5 class="Lotes">'+res.data[i].Nombre+' : '+' </h5> <br>');
-              $('#Montos').append('<h5 class="Montos">₡ '+res.data[i].monto+' </h5> <br>');
-              total += parseFloat(res.data[i].monto);
+              if(res.data[i].monto == null)
+              {
+                bb = 0;
+              }else {
+                bb = res.data[i].monto
+              }
+              $('#Montos').append('<h5 class="Montos">₡ '+bb+' </h5> <br>');
+              if(res.data[i].Anulados == null)
+              {
+                aa = 0;
+              }else {
+                aa = res.data[i].Anulados
+              }
+
+              $('#Anulados').append('<h5 class="Montos">₡ '+aa+' </h5> <br>');
+              total += parseFloat(bb);
+              anulado += parseFloat(aa);
               i++;
             }
             $('#Todos').append('<h5 class="Lotes"> Total : '+' </h5> <br>');
             $('#Montos').append('<h5 class="Montos">₡'+total+' </h5> <br>');
+            $('#Anulados').append('<h5 class="Montos">₡'+anulado+' </h5> <br>');
           }
       });
     }
 
   });
 }
-
-
 
 
 
@@ -298,12 +379,13 @@ function listar(){
           { "data": "Observacion","class":"hidden"},
           { "data": "IdCliente","class":"hidden"},
           { "data": "IdLote","class":"hidden"},
-          {"data":null,"defaultContent": "<button class='btn btn-info btnSeleccionar'><span class='fa fa-check'></span>Seleccionar</button>"}
+          { "data": "Estado","class":"hidden"},
+          {"data":null,"defaultContent": "<button class='btn btn-info btnAnular'><span class='fa fa-ban'></span> Anular</button>"}
           ],
 
  "language": idioma_espanol
   });
-
+aa();
 
 }
 

@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col col-md-12 col-sm-12 col-lg-12">
         <label class="col col-md-2 col-lg-2 col-sm-2 lblve">Vendedor : </label>
-        <label class="col col-md-2 col-lg-2 col-sm-2 lblve" id="lblVe">Vendedor </label>
+        <label class="col col-md-2 col-lg-2 col-sm-2 lblve"><?php echo $_SESSION['user'] ?> </label>
       </div>
     </div>
 
@@ -132,6 +132,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -189,13 +190,16 @@
 <br>
 
   <div class="row">
-    <div class="col col-md-2 col-sm-2 col-lg-2" id="Todos">
 
+    <div class="col col-md-4 col-sm-4 col-lg-2" id="Todos">
     </div>
-    <div class="col col-md-2 col-sm-6 col-lg-2" id="Montos">
 
-
+    <div class="col col-md-4 col-sm-4 col-lg-2" id="Montos">
     </div>
+
+    <div class="col col-md-4 col-sm-4 col-lg-2" id="Anulados">
+    </div>
+    
   </div>
 
 

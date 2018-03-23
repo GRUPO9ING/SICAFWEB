@@ -35,7 +35,7 @@
                  <div class="col col-md-12">
                      <div class="form-group">
                        <label class="col col-md-3">Cantidad de horas</label>
-                       <div class="col col-md-5">
+                       <div class="col col-md-5 ">
                        <input class="form-control" type="number" id="cHoas" name="cHoas">
                      </div>
                      </div>

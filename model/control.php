@@ -70,6 +70,17 @@ class Control
  }
 
 
+ public function Anul($idF){
+ 	try {
+
+ 		$stm = $this->pdo->prepare("CALL Anul(?);");
+ 		return $stm->execute(array($idF));
+
+ 	} catch (Exception $e) {
+ 	 die($e->getMessage());
+ 	}
+ }
+
 
 
 	public function Carga()

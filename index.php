@@ -39,17 +39,17 @@ else
     $controller = ucwords($controller) . 'Controller';
     $controller = new $controller;
 
-    /*if(!isset($_SESSION['user']))
-    {*/
-      /*$controller = strtolower('Login');
+    if(!isset($_SESSION['user']))
+    {
+      $controller = strtolower('Login');
       $controller = ucwords($controller) . 'Controller';
-      */$controller = new $controller;
+      $controller = new $controller;
       call_user_func( array( $controller, $accion ) );
-    //}
-    /*else
+    }
+    else
     {
       // Llama la accion
         call_user_func( array( $controller, $accion ) );
-    }*/
+    }
 
 }
