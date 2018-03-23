@@ -16,13 +16,16 @@
 
                          <div class="row">
                            <div class="col col-md-12">
-                             <label class="col col-md-3 col-sm-6 col-lg-3">Insumo :</label>
-                           <div class="col col-md-9 col-sm-6 col-lg-6">
+                             <label class="col col-md-3 col-sm-3 col-lg-3">Insumo :</label>
+                           <div class="col col-md-5 col-sm-5 col-lg-5">
                           <select id="IdInsu" class="selectpicker" data-live-search="true" title="Seleccione uno">
                                <?php foreach($this->modelL->LlenarInsumos() as $r): ?>
                                        <option value="<?php echo $r->IdInsumo; ?>"> <?php echo $r->Nombre?> </option>
                                <?php endforeach; ?>
                            </select>
+                           </div>
+                           <div class="col col-md-3 col-sm-3 col-lg-3">
+                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargar" id="INVENTARIO"> <span class="fa fa-plus"></span> Agregar Inventario</button>
                            </div>
                          </div>
                        </div>

@@ -1,15 +1,17 @@
 <?php
 require_once 'model/colaborador.php';
 require_once 'model/lote.php';
-
+require_once 'model/insumo.php';
 class TcController{
 
     private $modelC;
     private $modelL;
+    private $modelI;
 
     public function __CONSTRUCT(){
         $this->modelC = new Colaborador();
         $this->modelL = new Lote();
+        $this->modelI = new Insumo();
     }
 
     public function Index(){
@@ -89,5 +91,13 @@ class TcController{
      echo $result;
      exit();
    }
+
+   public function CargarInsumo()
+   {
+     $result = $this->modelI->CargarIN1($_POST['id'],$_POST['cant']);
+     echo $result;
+     exit();
+   }
+
 
 }

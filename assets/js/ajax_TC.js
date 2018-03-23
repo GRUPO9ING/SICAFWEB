@@ -1,5 +1,15 @@
 $(document).on("ready", function(){
+
+  $("#INVENTARIO").on('click',function(){
+   $("#Lote").text($("#IdInsu option:selected").text());
+  });
+
+  cargarInsumo();
+
+
  porHora();
+ $('#INVENTARIO').prop('disabled', true);
+ insu();
  validaLong();
   $("#jus").val('');
   tcg();
@@ -75,7 +85,90 @@ $("#invert").val(total);
           }
       });
 
-      }
+  }
+
+  validator = $("#frm-c").validate();
+  $.validator.addMethod("numero", function (value, element) {
+  return this.optional(element) || /^[0-9]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+
+function cargarInsumo(){
+
+ $("#Guadar").on('click',function(){
+
+   validatorCargar = $("#frm-c").validate();
+   validatorCargar.destroy();
+   validatorCargar = $("#frm-c").validate({
+       event: "blur",
+       errorElement: "span",
+
+       rules: {
+         can: {required: true, numero: true, rangelength: [1, 30]}
+
+       },
+       messages: {
+         can:{required: "Requerido",numero:"No se permiten caracteres especiales" ,rangelength: "Máximo {1} caracteres"},
+       },
+       submitHandler: function (form)
+       {
+         $.ajax({
+           type:'POST',
+           url:'?c=tc&a=CargarInsumo',
+           data:{
+             'id':$("#IdInsu").val(),
+             'cant':$("#can").val()
+           },
+           success:function(result){
+             console.log(result);
+             if(result == false){
+
+               swal({
+                   type: 'error',
+                   title: 'Algo salio mal',
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+
+             }
+             else {
+               $("#cargar").hide();
+               swal({
+                   type: 'success',
+                   title: 'Inventario agregado',
+                   showConfirmButton: false,
+                   timer: 1
+                 });
+             }
+           },
+           complete: function(){
+              $('.mensajes').html('');
+          }
+        });
+
+       }
+   });
+});
+
+}
+
+function insu(){
+    $("#IdInsu").on("change",function(){
+     var des = $("#IdInsu").val();
+         if(des != ''){
+
+          $("#INVENTARIO").prop( "disabled", false );
+
+         }
+         else
+         {
+
+           $("#INVENTARIO").prop( "disabled", true );
+
+
+         }
+    });
+  }
 
 
 function porHora(){

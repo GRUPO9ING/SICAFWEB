@@ -13,4 +13,6 @@
   <?php include('view/trabajoCampo/tc-m.php');?>
   <?php include('view/trabajoCampo/c-m.php');?>
   <?php include('view/trabajoCampo/i-m.php');?>
+  <?php include('view/trabajoCampo/cargarInsumo.php');?>
+
 <?php include('view/overall/footer.php'); ?>

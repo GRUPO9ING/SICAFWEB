@@ -9,7 +9,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <br>
         <center>
-        <h4 class="modal-title" id="nn" style="color : #426ef4;"></h4>
+        <h4 class="modal-title" id="nn"></h4>
       </center>
         </div>
       <div class="modal-body">

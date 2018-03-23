@@ -73,6 +73,25 @@ class Insumo
 		}
 	}
 
+
+  public function CargarIN1($Id,$cant)
+	{
+		try
+		{
+			$stm = $this->pdo
+			            ->prepare("CALL CargarInventario(?,?)");
+
+			return $stm->execute(array($Id,$cant));
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+
+	}
+
+
+
 	public function Actualizar($data)
 	{
 		try
