@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <?php include('view/insumo/inve-M.php'); ?>
+  <?php include('view/trabajoCampo/cargarInsumo.php'); ?>
 <?php include('view/insumo/insumo-M.php'); ?>
 <script src="assets/js/ajax_insumo.js" charset="utf-8"></script>
 <?php include('view/overall/footer.php'); ?>

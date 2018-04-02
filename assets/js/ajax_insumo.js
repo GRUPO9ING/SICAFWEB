@@ -2,6 +2,8 @@
 $(document).on("ready", function(){
   listar();
 
+  cargarInsumo();
+
     $("#frm-insumo").on("submit", function(e){
            e.preventDefault();
            //Guardamos la referencia al formulario
@@ -69,6 +71,82 @@ function __(id) {
 }
 
 
+validator = $("#frm-c").validate();
+$.validator.addMethod("numero", function (value, element) {
+return this.optional(element) || /^[0-9]+$/.test(value);
+}, "No se permiten caracteres especiales o numeros");
+
+
+function cargarInsumo(){
+
+ $("#GuadarIN").on('click',function(){
+
+   validatorCargar = $("#frm-c").validate();
+   validatorCargar.destroy();
+   validatorCargar = $("#frm-c").validate({
+       event: "blur",
+       errorElement: "span",
+
+       rules: {
+         can: {required: true, numero: true, rangelength: [1, 30]}
+
+       },
+       messages: {
+         can:{required: "Requerido",numero:"No se permiten caracteres especiales" ,rangelength: "Máximo {1} caracteres"},
+       },
+       submitHandler: function (form)
+       {
+         var msg, type;
+         $.ajax({
+           type:'POST',
+           url:'?c=tc&a=CargarInsumo',
+           data:{
+             'id':$("#IdInsu").val(),
+             'cant':$("#can").val()
+           },
+           success:function(result){
+
+             $('#cargar').modal('hide');
+              if ($('.modal-backdrop').is(':visible')) {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+              };
+             if(result == true)
+             {
+               swal({
+                   type: 'success',
+                   title: 'Operación ejecutada exitosamente',
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+              listar();
+             }
+             else
+             {
+               swal({
+                   type: 'error',
+                   title: 'Error',
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+
+             }
+
+           },
+           complete: function(){
+
+              $('.mensajes').html('');
+          }
+        });
+
+       }
+   });
+});
+
+}
+
+
+
   function limpiar()
   {
     $('#IdInsumo').val("");
@@ -86,8 +164,9 @@ function __(id) {
   $("#tablaInsumo").on("click",".btnAgregarInventario", function(){
     d = $(this).parents("tr").find("td");
 
-    $('#Inve').modal('show');
-    $("#titulo").text(d[3].innerText);
+    $('#cargar').modal('show');
+    $('#IdInsu').val(d[0].innerText);
+    $("#Lote").text(d[3].innerText);
   });
 
 

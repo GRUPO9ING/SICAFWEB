@@ -13,12 +13,14 @@
        <div class="row">
          <form id="frm-c" method="post">
 
+          <input name="" value="" class="hidden" id="IdInsu">
+
          <label id="Lote"></label>
 
           <input class="inve" type="number" name="can" id="can" placeholder="Cantidad">
 
           <div class="modal-footer">
-            <button class="btn btn-success" id="Guadar"> <span class="fa fa-arrow-up"></span> Cargar</button>
+            <button class="btn btn-success" id="GuadarIN"> <span class="fa fa-arrow-up"></span> Cargar</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
          </div>
          </form>

@@ -1,62 +1,6 @@
 $(document).on("ready", function(){
   listar();
   guardar();
-  $("#frm-lote").on("submit", function(e){
-         e.preventDefault();
-         //Guardamos la referencia al formulario
-         var $f = $(this);
-         //Comprobamos si el semaforo esta en verde (1)
-         if ($f.data('locked') != undefined && !$f.data('locked')){
-          //No esta bloqueado aun, bloqueamos, preparamos y enviamos la peticion
-                           $.ajax({
-                             type: 'POST',
-                             url:"?c=Lote&a=Guardar",
-                             data: {
-                            'IdLote': $('#IdLote').val(),
-                            'Nombre': $('#Nombre').val(),
-                            'AreaL': $('#AreaL').val(),
-                            'Estado': $('#Estado').val(),
-                            'Produccion': $('#Produccion').val()
-                               },
-                              beforeSend: function(){
-                                  $f.data('locked', true);  // (2)
-                              },
-                              success: function(result){
-                                $('#mGuardar').modal('hide');
-                                if(result == true)
-                                {
-                                  swal({
-                                      type: 'success',
-                                      title: 'Operación ejecutada exitosamente',
-                                      showConfirmButton: false,
-                                      timer: 1500
-                                    });
-
-                                 listar();
-                                }
-                                else
-                                {
-                                  swal({
-                                      type: 'error',
-                                      title: 'Error',
-                                      showConfirmButton: false,
-                                      timer: 1500
-                                    });
-
-                                }
-                             },
-                             complete: function(){ $f.data('locked', false);  // (3)
-                            }
-                        });
-                      }
-                      else
-                      {
-                       //Bloqueado!!!
-                       //alert("locked");
-                      }
-
-  });
-
 });
 
 
