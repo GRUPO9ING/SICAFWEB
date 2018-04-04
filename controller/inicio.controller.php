@@ -9,7 +9,7 @@ class InicioController
     }
 
     public function Index(){
-        require_once 'view/login/login.php';
+        require_once 'view/overall/inicio.php';
     }
 }
 ?>

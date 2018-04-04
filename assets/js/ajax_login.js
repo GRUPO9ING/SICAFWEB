@@ -31,7 +31,7 @@ $(document).on("ready", function(){
                                       console.log(result);
                                       }
                                     });
-                                    location.href ="?c=colaborador";
+                                    location.href ="?c=inicio";
                                     if (dismiss === 'timer')
                                     {
                                       console.log('I was closed by the timer')
