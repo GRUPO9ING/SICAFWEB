@@ -11,15 +11,30 @@ class ColaboradorController{
     public function Index(){
         require_once 'view/colaborador/index.php';
     }
+
+    public function IndexT(){
+        require_once 'view/tipo/index.php';
+    }
+
     public function IndexH(){
         require_once 'view/colaborador/indexH.php';
     }
+
     public function Listar() {
 
           $resultSet["data"] = $this->model->Listar();
 
  			 		echo json_encode($resultSet);
 
+ 			 		exit();
+
+    }
+
+
+    public function ListarTipo() {
+
+          $resultSet["data"] = $this->model->ListarTipo();
+ 			 		echo json_encode($resultSet);
  			 		exit();
 
     }
@@ -132,5 +147,18 @@ class ColaboradorController{
           echo $result;
           exit();
         }
+
+        public function IngresarTipo(){
+          $result = $this->model->guardarTipo($_POST['id'],$_POST['tipo'],$_POST['detalle']);
+          echo $result;
+          exit();
+        }
+
+        public function EliminaTipo(){
+          $result = $this->model->EliminaTipo($_POST['id']);
+          echo $result;
+          exit();
+        }
+
 
 }

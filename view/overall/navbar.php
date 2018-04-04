@@ -31,6 +31,12 @@
                                          </li>
 
                                          <li>
+                                             <a href="?c=colaborador&a=IndexT">
+                                                 <i class="fa fa-tags fa-lg"></i> Tipo de Colaboradores
+                                             </a>
+                                         </li>
+
+                                         <li>
                                              <a href="?c=nomina">
                                                  <i class="fa fa-male fa-lg"></i> Nomina
                                              </a>
@@ -86,7 +92,7 @@
                                                  <i class="fa fa-archive fa-lg"></i> Inventario de insumo
                                              </a>
                                          </li>
-                                         
+
                                          <li>
                                            <a href="?c=tipoInsumo">
                                              <i class="fa fa-tags fa-lg"></i> Tipo de insumo

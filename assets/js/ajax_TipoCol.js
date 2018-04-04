@@ -1,103 +1,117 @@
 $(document).on("ready", function(){
-  listar();
-  /*  */
-    validator = $("#frm-tipoInsumo").validate();
-    $.validator.addMethod("letras_espacios", function (value, element) {
-    return this.optional(element) || /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
-  }, "No se permiten caracteres especiales o numeros");
-
-
-
-   $("#GuardartipoInsumo").on("click", function () {
-
-    validatorTipoInsumo = $("#frm-tipoInsumo").validate();
-    validatorTipoInsumo.destroy();
-    validatorTipoInsumo = $("#frm-tipoInsumo").validate({
-        event: "blur",
-        errorElement: "span",
-
-        rules: {
-          tipoInsumo: {required: true, letras_espacios: true, rangelength: [1, 30]}
-
-        },
-        messages: {
-          tipoInsumo:{required: "Requerido",letras_espacios:"No se permiten caracteres especiales o numeros" ,rangelength: "Máximo {1} caracteres"},
-        },
-        submitHandler: function (form)
-        {
-              $.ajax({
-                 type: 'POST',
-                 url:"?c=TipoInsumo&a=Guardar",
-                 data: {
-                     'IdTI': $("#id").val(),
-                     'Nombre':  $("#Tipo").val()
-                  },
-                  success: function(result){
-                    $('#mGuardar').modal('hide');                    
-                   if(result == true)
-                   {
-                     swal({
-                         type: 'success',
-                         title: 'Operación ejecutada exitosamente',
-                         showConfirmButton: false,
-                         timer: 1000
-                       });
-
-                    listar();
-                   }
-                   else
-                   {
-                     swal({
-                         type: 'error',
-                         title: 'Error',
-                         showConfirmButton: false,
-                         timer: 1000
-                       });
-
-                   }
-                },
-                complete: function(){
-                   $('.mensajes').html('');
-               }
-           });
-        }
-    });
+       listar();
+       guardarTipo();
+       editarTipo();
+       eliminarTipo();
+       /**/
+       /**/
 });
+/**/
 
-
-
-
-});
-
+/**/
 function __(id) {
   return document.getElementById(id);
 }
 
 
-function limpiar(){
-  $('#id').val("");
-  $('#Tipo').val("");
-  __('nn').innerHTML = "Nuevo";
+
+function guardarTipo(){
+
+    $("#Enviar").on('click',function(){
+
+      validator = $("#frm-tipocol").validate();
+      $.validator.addMethod("todos", function (value, element) {
+      return this.optional(element) || /^[0-9@a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.,\s]+$/.test(value);
+      }, "No se permiten caracteres especiales o numeros");
+
+
+
+
+        validatortipocol = $("#frm-tipocol").validate();
+        validatortipocol.destroy();
+        validatortipocol = $("#frm-tipocol").validate({
+        event: "blur",
+        errorElement: "span",
+        rules: {
+          Detalle :{required:true, todos:true, rangelength:[2,100]},
+          tipo: {required:true, todos:true, rangelength:[2,15]}
+        },
+        messages: {
+          Detalle: {required: 'Este datos es requerido', todos:'No se aceptan caracteres especiales', rangelength:'Máximo {1} caracteres'},
+          tipo: {required:'Este dato es requerido', todos:'No se aceptan caracteres especiales', rangelength:'Máximo {1} caracteres'}
+        },
+        submitHandler: function (form)
+        {
+
+          $.ajax({
+             type: 'POST',
+             url:"?c=colaborador&a=IngresarTipo",
+             data: {
+               'id': $('#id').val(),
+               'tipo':  $("#tipo").val(),
+               'detalle':  $("#Detalle").val()
+             },
+             success:function(result){
+               $('#mTipo').modal('hide');
+               if(result == true)
+               {
+                 swal({
+                     type: 'success',
+                     title: 'Operación ejecutada exitosamente',
+                     showConfirmButton: false,
+                     timer: 1500
+                   });
+
+                listar();
+               }
+               else
+               {
+                 console.log(result)
+                 swal({
+                     type: 'error',
+                     title: 'Error',
+                     showConfirmButton: false,
+                     timer: 1500
+                   });
+
+               }
+             },
+               complete: function(){
+                 $('.mensajes').html('');
+              }
+          });
+
+        }
+      })
+    });
 }
 
-$("#tabla").on("click",".btnTipo", function(){
-  d = $(this).parents("tr").find("td");
-      $('#id').val(d[0].innerText);
-      $('#Tipo').val(d[1].innerText);
-      __('nn').innerHTML = "Editar";
 
-});
+function editarTipo(){
 
-  $("#tabla").on("click",".btnElinimar", function(){
+  $("#tablaTipoCol").on("click",".btnEditarTipo", function(){
     d = $(this).parents("tr").find("td");
+        $('#id').val(d[0].innerText);
+        $('#tipo').val(d[1].innerText);
+        $('#Detalle').val(d[2].innerText);
+  });
+
+}
+
+
+function eliminarTipo(){
+  $("#tablaTipoCol").on("click",".btnElinimarTipo", function(){
+    d = $(this).parents("tr").find("td");
+
+
           swal({
-                    title: '¿Esta seguro que desea eliminar a '+d[1].innerText+'?',
+                    title: '¿Esta seguro que desea eliminar este tipo?',
                     text: "No se puede revertir!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, Elimínelo!',
+                    confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Cancelar!',
                     confirmButtonClass: 'btn btn-success',
                     cancelButtonClass: 'btn btn-danger',
@@ -106,9 +120,9 @@ $("#tabla").on("click",".btnTipo", function(){
 
                     $.ajax({
                               type: 'POST',
-                              url:"?c=TipoInsumo&a=Eliminar",
+                              url:"?c=colaborador&a=EliminaTipo",
                               data: {
-                             'IdTI': d[0].innerText},
+                             'id': d[0].innerText},
                               success: function(result){
 
                                 if(result == true){
@@ -132,9 +146,9 @@ $("#tabla").on("click",".btnTipo", function(){
                       swal({
                           type: 'error',
                           title: 'Operacion Cancelada',
-                          text : 'Su registro no se ha eliminado',
+                          text : 'Su registro esta a salvo ☺',
                           showConfirmButton: false,
-                          timer: 1500
+                          timer: 700
                         });
 
                     }
@@ -143,24 +157,26 @@ $("#tabla").on("click",".btnTipo", function(){
 
 });
 
+}
 
 function listar(){
 
-  var table = $("#tabla").DataTable({
-    "scrollY":"300px",
+  var table = $("#tablaTipoCol").DataTable({
+       "order": [[0, "desc" ]],
+       "scrollY":"300px",
        "destroy": true,
        "responsive":true,
        "bDeferRender": true,
         "sPaginationType": "full_numbers",
         "ajax": {
-          "url": "?c=tipoInsumo&a=Listar",
-          "type": "POST"
-        },
+          "type": "POST",
+          "url": "?c=Colaborador&a=ListarTipo"
+              },
         "columns": [
-          { "data": "IdTI" , "class": "hidden"},
-          { "data": "Tipo" },
-          {"data":null,"defaultContent": "<buttom class='btn btn-warning btnTipo' data-toggle='modal' data-target='#mGuardar'><span class='fa fa-pencil'></span></buttom>\
-          <button class='btn btn-danger btnElinimar'><span class='fa fa-trash'></span></button>" }
+          { "data": "IdTipoColaborador" , "class": "hidden"},
+          { "data": "Tipo"},
+          { "data": "Detalle"},
+          {"data":null,"defaultContent": "<button class='btn btn-warning btnEditarTipo' data-toggle='modal' data-target='#mTipo'><span class='fa fa-pencil'></span></button><button class='btn btn-danger'><Tipo class='fa fa-trash fa-lg  btnElinimarTipo'></span></button>" }
           ],
 
  "language": idioma_espanol,
@@ -203,9 +219,8 @@ function listar(){
 
 
   });
-
-
 }
+
 
 
     var idioma_espanol = {

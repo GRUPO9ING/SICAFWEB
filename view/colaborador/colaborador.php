@@ -2,7 +2,7 @@
 <h1 class="page-header">Colaboradores</h1>
 
 <div class="text-left">
-    <a class="btn btn-primary" onclick="limpiar();" data-toggle="modal" data-target="#mGuardar"><span class="fa fa-plus-square-o"></span> Nuevo Colaborador</a>
+  <a class="btn btn-primary" onclick="limpiar();" data-toggle="modal" data-target="#mGuardar"><span class="fa fa-plus-square-o"></span> Nuevo Colaborador</a>
 </div>
 
 <div class="table-responsive">

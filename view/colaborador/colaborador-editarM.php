@@ -9,13 +9,11 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <br>
         <center>
-        <h4 class="modal-title" id="nn"></h4>
-      </center>
+          <h4 class="modal-title" id="nn"></h4>
+        </center>
         </div>
       <div class="modal-body">
               <form id="frm-colaborador" method="post">
-                <input type="hidden" id="IdCol" name="IdCol" value=0 />
-                <input type="hidden" id="id" name="IdPersona" />
                 <input type="hidden" id="idP"/>
 
                       <div class="row">

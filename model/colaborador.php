@@ -57,6 +57,23 @@ class Colaborador
 		}
 	}
 
+	public function ListarTipo()
+
+		{
+			try
+			{
+				$result = array();
+
+				$stm = $this->pdo->prepare("CALL listarTipos()");
+				$stm->execute();
+	     return $stm->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
+
 
 	public function CBO($id)
 	{
@@ -73,6 +90,37 @@ class Colaborador
 			die($e->getMessage());
 		}
 	}
+
+	public function guardarTipo($id,$tipo,$detalle)
+	{
+		try
+		{
+			$result = array();
+			$stm = $this->pdo->prepare("CALL crearTipoCol(?,?,?)");
+			return $stm->execute(array($id,$tipo,$detalle));
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
+	public function EliminaTipo($id)
+	{
+		try
+		{
+			$result = array();
+			$stm = $this->pdo->prepare("CALL EliminaTipo(?)");
+			return $stm->execute(array($id));
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
 
 
 	public function CedDespl($Cedula)
