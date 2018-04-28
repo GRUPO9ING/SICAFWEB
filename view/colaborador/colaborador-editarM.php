@@ -14,7 +14,9 @@
         </div>
       <div class="modal-body">
               <form id="frm-colaborador" method="post">
-                <input type="hidden" id="idP"/>
+
+                <input type="hidden" id="IdCol" value="-1">
+                <input type="hidden" id="id">
 
                       <div class="row">
                         <div class="col col-md-12">

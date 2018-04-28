@@ -80,6 +80,7 @@ class ColaboradorController{
       $col->SalarioBruto = $_POST['SalarioBruto'];
       $col->Horas = $_POST['Horas'];
       $col->IdColaborador = $_POST['IdColaborador'];
+      
       if($_POST['IdColaborador'] > 0)
       {
         $result = $this->model->Actualizar($col);

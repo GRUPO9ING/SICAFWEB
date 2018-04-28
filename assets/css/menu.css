@@ -1,6 +1,10 @@
 .modal-header{
-background-color: #077a1e;
-color: white;
+   color: white;
+   background: -webkit-linear-gradient(left,#36e872,#5de837);
+   background: -moz-linear-gradient(left,#36e872,#5de837);
+   background: -o-linear-gradient(left,#36e872,#5de837);
+   background: linear-gradient(to right,#36e872,#5de837);
+
 }
 .modal {
   text-align: center;
@@ -30,6 +34,7 @@ color: black;
 
 .modal-body{
   background-color: #eaf7ec;
+
 }
 .modal-title{
   color:white;
@@ -194,11 +199,22 @@ width: 100%;
 }
 
 
+
 body {
-    background-color: #f2eded;
+
+    background: -webkit-linear-gradient(left,#c5d8c8,#eddede);
+    background: -moz-linear-gradient(left,#c5d8c8,#eddede);
+    background: -o-linear-gradient(left,#c5d8c8,#eddede);
+    background: linear-gradient(to left,#c5d8c8,#eddede);
+
 }
 table{
-  background-color: #e0ecff;
+   background: #02AAB0;
+   background: -webkit-linear-gradient(left,#c5d8c8,#eddede);
+   background: -moz-linear-gradient(left,#c5d8c8,#eddede);
+   background: -o-linear-gradient(left,#c5d8c8,#eddede);
+   background: linear-gradient(to left,#c5d8c8,#eddede);
+
 }
 
 
@@ -312,7 +328,7 @@ table{
 }
 .nav-side-menu ul .sub-menu li:hover,
 .nav-side-menu li .sub-menu li:hover {
-    background-color: #020203;
+    background-color: #64d16f;
 }
 .nav-side-menu ul .sub-menu li:before,
 .nav-side-menu li .sub-menu li:before {
@@ -339,7 +355,7 @@ table{
 }
 .nav-side-menu li:hover {
     border-left: 3px solid #d19b3d;
-    background-color: #4f5b69;
+    background-color: #40b530;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -371,8 +387,15 @@ table{
         font-size: 22px;
         padding-left: 20px;
         line-height: 90px !important;
+
+            background: -webkit-linear-gradient(left,#a4b5a7,#c6b6b6);
+            background: -moz-linear-gradient(left,#a4b5a7,#c6b6b6);
+            background: -o-linear-gradient(left,#a4b5a7,#c6b6b6);
+            background: linear-gradient(to left,#a4b5a7,#c6b6b6);
+
     }
 }
+
 @media (min-width: 767px) {
     .nav-side-menu .menu-list .menu-content {
         display: block;

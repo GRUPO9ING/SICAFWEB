@@ -3,7 +3,7 @@
     <div class="col col-sm-4" style="position:relative; right:15px;">
       <?php include('view/overall/navbar.php'); ?>
     </div>
-   <div class="col col-sm-4" style="position:relative; left:5%; top: 50%;">
+   <div class="col col-sm-8">
      <img SRC="assets/imagenes/Sicafweb2.png">
    </div>
   </div>

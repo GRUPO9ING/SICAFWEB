@@ -21,7 +21,7 @@ if(isset($_REQUEST['c']))
     $controller = $_REQUEST['c'];
 }
 else {
-    $controller = 'inicio';
+    $controller = 'login';
 }
 
 // Todo esta lógica hara el papel de un FrontController

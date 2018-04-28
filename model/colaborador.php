@@ -308,14 +308,14 @@ class Colaborador
 	 	public function NuevaHE($c,$id,$f)
 	 	{
 
-			       $f = date('Y-m-d', strtotime($f));
+			       $f2 = date('Y-m-d', strtotime($f));
 	 		try
 	 		{
 	 			$sql = "CALL AgregaHE(?,?,?)";
 	 			$stm = $this->pdo->prepare($sql);
 	 			return $stm->execute(array($c,
 			                $id,
-										  $f));
+										  $f2));
 										}
 	 		catch(Exception $e)
 	 		{

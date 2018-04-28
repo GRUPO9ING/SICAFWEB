@@ -14,7 +14,8 @@
         </div>
       <div class="modal-body">
               <form id="frm-horas" method="post">
-            <input type="text" class="hidden" id="idHe">
+            <input type="text" class="hidden" id="idHe" value="-1">
+
               <div class="row">
                <div class="col col-md-12">
                    <div class="form-group">

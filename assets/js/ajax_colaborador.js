@@ -89,7 +89,7 @@ function guardarCol(){
              type: 'POST',
              url:"?c=Persona&a=Guardar",
              data: {
-               'IdPersona': $("#idP").val(),
+               'IdPersona': $("#id").val(),
                'Cedula':  $("#Cedula").val(),
                'Nombre':  $("#Nombre").val(),
                'Apellido1': $("#ap1").val(),
@@ -99,6 +99,7 @@ function guardarCol(){
                'Correo': $("#cor").val()
              },
              success:function(result){
+               console.log(result);
                console.log($("#IdCol").val());
                $.ajax({
                   type: 'POST',
@@ -112,12 +113,16 @@ function guardarCol(){
                       'Horas':$('#horas').val(),
                       'SalarioBase':$('#sal').val(),
                       'SalarioBruto': __('salB').innerHTML
+                    },
+                    success:function(result){
+                      console.log(result);
+                      console.log($("#IdCol").val());
                     }
-
                   });
                   $('#mGuardar').modal('hide');
                   if(result == true)
                   {
+                    console.log(result);
                     swal({
                         type: 'success',
                         title: 'Operación ejecutada exitosamente',
@@ -165,72 +170,7 @@ function limpiar(){
 
 
 
-$("#tablahoras").on("click",".btnAplicar", function(){
-  d = $(this).parents("tr").find("td");
-  var valida = d[5].innerText;
-   if(valida == "Pendiente"){
-  $.ajax({
-    type:'POST',
-    url:'?c=Colaborador&a=AplicarHE',
-    data:{
-          "idP": d[2].innerText,
-          "fecha":d[4].innerText,
-          "idCol":d[0].innerText},
-          success:function(result){
-            if(result = true){
-              console.log(d[2],d[4],d[0]);
-                  swal({
-                    type: 'success',
-                    title: 'Operación ejecutada exitosamente',
-                    showConfirmButton: false,
-                    timer: 1200
-                  });
-              }
-              else {
 
-                swal({
-                  type: 'error',
-                  title: 'No existe nomina en ese rango de fecha',
-                  showConfirmButton: false,
-                  timer: 1200
-                });
-            }
-            listarHE();
-        }
-  });
-  }
-  else {
-
-    swal({
-      type: 'info',
-      title: 'Ya ha sido aplicada la solicitud',
-      showConfirmButton: false,
-      timer: 1200
-    });
-
-  }
-});
-
-
-$("#tablahoras").on("click",".btnEditarSoli", function(){
-  d = $(this).parents("tr").find("td");
-  var a = d[5].innerText;
-  if(a == "Pendiente")
-  {
-  $('#mHoras').modal('show');
-  $("#idHe").val(d[2].innerText);
-  $("#IdTC").val(d[0].innerText);
-  $("#FF").val(d[4].innerText);
-  $("#cHoas").val(d[3].innerText);
-}else {
-  swal({
-      type: 'error',
-      title: 'La solicitud ya fue aprobada, imposible editar',
-      showConfirmButton: false,
-      timer: 1000
-    });
-}
-});
 
 $("#tablaCol").on("click",".btnEditarColaborador", function(){
   d = $(this).parents("tr").find("td");
@@ -538,75 +478,6 @@ function listar(){
 
   });
 }
-
-
-  function listarHE(){
-
-    var table = $("#tablahoras").DataTable({
-      "order": [[2, "desc" ]],
-         "scrollY":"300px",
-         "destroy": true,
-         "responsive":true,
-         "bDeferRender": true,
-          "sPaginationType": "full_numbers",
-          "ajax": {
-            "type": "POST",
-            "url": "?c=Colaborador&a=ListarHE"
-                },
-          "columns": [
-            { "data": "IdColaborador","class":"hidden"},
-            { "data": "Colaborador"},
-            { "data": "IdHoras" },
-            { "data": "Cantidad" },
-            { "data": "Fecha" },
-            { "data": "Estado" },
-            {"data":null,"defaultContent": "<buttom class='btn btn-warning btnEditarSoli' title='Editar Solicitud'><span class='fa fa-pencil' id='edit'></span></buttom>|<button class='btn btn-danger' title='Cancelar Solicitud' id='Cancel'><span class='fa fa-times fa-lg  btnElinimarSoli'></span></button>|<buttom title='Aplicar' class='btn btn-info btnAplicar' id='Aplicar' ><span class='fa fa-check'></span></buttom>" }
-            ],
-
-   "language": idioma_espanol,
-   dom: "<'row'<'form-inline' <'col-sm-offset-5'B>>>"
-       +"<'row' <'form-inline' <'col-sm-1'f>>>"
-       +"<rt>"
-       +" <'row'<'form-inline'"
-       +" <'col-sm-6 col-md-6 col-lg-6'l>"
-       +"<'col-sm-6 col-md-6 col-lg-6'p>>>",
-
-  "buttons":[
-
-            {
-                extend:    'excelHtml5',
-                text:      '<i class="fa fa-file-excel-o"></i>',
-                className: 'btn btn-success',
-                titleAttr: 'Excel'
-            },
-
-            {
-                extend:    'pdfHtml5',
-                text:      '<i class="fa fa-file-pdf-o"></i>',
-                className: 'btn btn-danger',
-                titleAttr: 'PDF'
-            },
-
-            {
-                extend: 'print',
-                text:   '<i class="fa fa-print"></i>',
-                className: 'btn btn-info',
-                autoPrint: true,
-                titleAttr: 'Imprimir',
-                exportOptions: {
-                modifier: {
-                page: 'current'
-                          }
-                                }
-           }
-            ]
-
-
-    });
-
-
-}
-
 
     var idioma_espanol = {
 
