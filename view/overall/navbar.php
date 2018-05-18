@@ -18,11 +18,13 @@
                                           <a href="#"><i class="fa fa-male fa-lg"></i> Planilla <span class="arrow"></span></a>
                                           </li>
                                        <ul class="sub-menu collapse" id="planilla">
+
                                          <li>
-                                             <a href="?c=colaborador&a=indexH">
-                                                 <i class="fa fa-clock-o fa-lg"></i> Gestión de horas
+                                             <a href="?c=colaborador&a=IndexT">
+                                                 <i class="fa fa-tags fa-lg"></i> Tipo de Colaboradores
                                              </a>
                                          </li>
+
 
                                          <li>
                                              <a href="?c=colaborador">
@@ -31,8 +33,8 @@
                                          </li>
 
                                          <li>
-                                             <a href="?c=colaborador&a=IndexT">
-                                                 <i class="fa fa-tags fa-lg"></i> Tipo de Colaboradores
+                                             <a href="?c=colaborador&a=indexH">
+                                                 <i class="fa fa-clock-o fa-lg"></i> Gestión de horas
                                              </a>
                                          </li>
 
@@ -88,16 +90,17 @@
                                        <ul class="sub-menu collapse" id="Insumos">
 
                                          <li>
+                                           <a href="?c=tipoInsumo">
+                                             <i class="fa fa-tags fa-lg"></i> Tipo de insumo
+                                           </a>
+                                         </li>
+
+                                         <li>
                                              <a href="?c=insumo">
                                                  <i class="fa fa-archive fa-lg"></i> Inventario de insumo
                                              </a>
                                          </li>
 
-                                         <li>
-                                           <a href="?c=tipoInsumo">
-                                             <i class="fa fa-tags fa-lg"></i> Tipo de insumo
-                                           </a>
-                                         </li>
                                   </ul>
 
 

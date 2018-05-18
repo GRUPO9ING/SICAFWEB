@@ -10,6 +10,8 @@ class Usuario
     public $username;
     public $pass;
     public $Rol;
+    public $recu;
+    public $correo;
 
 	public function __CONSTRUCT()
 	{
@@ -40,20 +42,39 @@ class Usuario
 		}
 	}
 
-
-  public function insertar($data){
-
-
+  public function cambiar($user,$pw){
+    $recu = md5(microtime());
     try {
 
- 			$stm = $this->pdo->prepare("CALL newUser(?,?,?,?,?,?);");
+      $stm = $this->pdo->prepare("CALL changepw(?,?,?);");
+      return $stm->execute(array(
+                                 $user,
+                                 $pw,
+                                 $recu
+                                  ));
+
+    }
+    catch (Exception $e)
+    {
+    die($e->getMessage());
+    }
+  }
+
+
+  public function insertar($data){
+    $data->recu = md5(microtime());
+    try {
+
+ 			$stm = $this->pdo->prepare("CALL newUser(?,?,?,?,?,?,?,?);");
  			return $stm->execute(array(
                           $data->username,
                           $data->pass,
                           $data->Nombre,
                           $data->Apellido1,
                           $data->Apellido2,
-                          $data->Rol));
+                          $data->Rol,
+                          $data->recu,
+                          $data->correo));
 
     }
     catch (Exception $e)
@@ -71,6 +92,18 @@ class Usuario
       $encriptado .= ($x % 2) != 0 ? md5($string[$x]) : $x;
     }
     return md5($encriptado);
+    }
+
+    public function traercodigo($rec){
+      try {
+     			$stm = $this->pdo->prepare("CALL codigorecuperacion(?);");
+     		  $stm->execute(array($rec));
+	        return $stm->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (Exception $e)
+        {
+        die($e->getMessage());
+        }
     }
 
 }

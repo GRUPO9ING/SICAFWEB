@@ -17,7 +17,7 @@ class LoginController
     public function Index(){
       require_once 'view/login/login.php';
     }
-
+    
     public function Autenticar()
     {
       $l = new Login();
@@ -42,6 +42,31 @@ class LoginController
       session_destroy();
       require_once 'view/login/login.php';
     }
+
+    public function recuperacion(){
+      require_once 'view/recuperacion/formulario.php';
+    }
+
+    public function cambiar(){
+        $pw = $this->modelU->encrypt($_POST['newpw']);
+        $result = $this->modelU->cambiar($_POST['usuario'],$pw);
+        echo $result;
+        exit();
+    }
+
+
+    public function TraerCodigo(){
+      $user = $_POST['username'];
+      $resultSet["data"] = $this->modelU->traercodigo($user);
+      echo json_encode ($resultSet);
+      exit();
+    }
+
+    public function usuarios(){
+     require_once 'view/recuperacion/index.php';
+    }
+
+
 }
 
 ?>

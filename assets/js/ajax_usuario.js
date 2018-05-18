@@ -40,7 +40,8 @@ function guardar(){
              ap2: {required: true, letras_espacios: true, rangelength: [1, 30]},
              user: {required: true, letras_espacios: true, rangelength: [4, 30]},
              pw1: {required: true, pw: true, rangelength: [4, 30]},
-             pw2: {required: true, pw: true}
+             pw2: {required: true, pw: true},
+             correo:{required:true}
 
            },
            messages: {
@@ -49,8 +50,8 @@ function guardar(){
              ap2: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales",rangelength: "Máximo {1} caracteres" },
              user: {required: "Espacio requerido",letras_espacios:"No se permiten caracteres especiales" ,rangelength: "Máximo {1} caracteres"},
              pw1: {required: "Es necesario un contraseña",rangelength: "Máximo {1} caracteres"},
-             pw2: {required: "Debe confirmar la contraseña"}
-
+             pw2: {required: "Debe confirmar la contraseña"},
+             correo:{requerido: "Es necesario un correo"}
            },
            submitHandler: function (form)
            {
@@ -75,8 +76,8 @@ function guardar(){
                                     'ap2': $("#ap2").val(),
                                     'user': $("#user").val(),
                                     'pass': $("#pass").val(),
-                                    'rol': a
-
+                                    'rol': a,
+                                    'correo':$("#correo").val()
                                   },
                                 success: function(result){
                                   $('#mGuardar').modal('hide');

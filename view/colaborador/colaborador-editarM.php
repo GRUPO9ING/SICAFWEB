@@ -143,7 +143,7 @@
         <div class="row">
              <div class="col col-md-12">
                <div class="form-group">
-                   <label class="col col-md-3">Salario base</label>
+                   <label class="col col-md-3">Salario por hora</label>
                     <div class="col col-md-4">
                     <input type="number" id="sal" class="form-control" name="sal" placeholder="Salario Base" required>
                      </div>

@@ -15,7 +15,6 @@ require_once "controller/tc.controller.php";
 require_once "controller/ventas.controller.php";
 require_once "controller/control.controller.php";
 
-
 if(isset($_REQUEST['c']))
 {
     $controller = $_REQUEST['c'];
@@ -39,17 +38,18 @@ else
     $controller = ucwords($controller) . 'Controller';
     $controller = new $controller;
 
-    if(!isset($_SESSION['user']))
-    {
-      $controller = strtolower('Login');
-      $controller = ucwords($controller) . 'Controller';
-      $controller = new $controller;
-      call_user_func( array( $controller, $accion ) );
-    }
-    else
-    {
-      // Llama la accion
-        call_user_func( array( $controller, $accion ) );
-    }
+      if(!isset($_SESSION['user']))
+      {
+          $controller = strtolower('Login');
+          $controller = ucwords($controller) . 'Controller';
+          $controller = new $controller;
+          call_user_func( array( $controller, $accion ) );
 
-}
+      }
+      else
+      {
+        // Llama la accion
+          call_user_func( array( $controller, $accion ) );
+      }
+
+    }

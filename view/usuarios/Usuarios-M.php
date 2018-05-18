@@ -91,6 +91,17 @@
                                      </div>
                                    </div>
                                  </div>
+<br>
+                                 <div class="row">
+                                   <div class="col col-md-12">
+                                       <div class="form-group">
+                                         <label class="col col-md-4">Correo</label>
+                                         <div class="col col-md-8">
+                                         <input type="email" class="form-control" name="correo" id="correo"  placeholder="correo">
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
 
                                  <br>
 

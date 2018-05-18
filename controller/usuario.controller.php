@@ -29,11 +29,27 @@ class UsuarioController
         $ug->Apellido1 = $_POST['ap1'];
         $ug->Apellido2 = $_POST['ap2'];
         $ug->username = $_POST['user'];
+        $ug->correo = $_POST['correo'];
         $ug->pass = $this->model->encrypt($_POST['pass']);
         $ug->Rol = $_POST['rol'];
         $result = $this->model->insertar($ug);
         echo $result;
         exit();
+    }
+
+    public function cambiar(){
+        $pw = $this->model->encrypt($_POST['newpw']);
+        $result = $this->model->cambiar($_POST['usuario'],$pw);
+        echo $result;
+        exit();
+    }
+
+
+    public function TraerCodigo(){
+      $user = $_POST['username'];
+      $resultSet["data"] = $this->model->traercodigo($user);
+      echo json_encode ($resultSet);
+      exit();
     }
 
 
